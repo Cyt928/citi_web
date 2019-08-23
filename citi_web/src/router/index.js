@@ -19,6 +19,11 @@ export default new Router({
       name: 'CompositeIndex',
       path: '/CompositeIndex',
       component: () => import('@/views/CompositeIndex')
+    },
+    {
+      path: '/login',
+      name: 'login',
+      component: () => import('@/views/login')
     }
   ]
 })
