@@ -10,7 +10,43 @@ module.exports = {
     // Paths
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
-    proxyTable: {},
+    proxyTable: {
+      '/xinlang':{
+        target: 'http://hq.sinajs.cn',
+        changeOrigin: true,
+        pathRewrite: {
+          '^/xinlang' : ''
+        }
+      },
+      '/sina':{
+        target: 'http://money.finance.sina.com.cn',
+        changeOrigin: true,
+        pathRewrite: {
+          '^/sina' : ''
+        }
+      },
+      '/tengxun':{
+        target: 'http://data.gtimg.cn',
+        changeOrigin: true,
+        pathRewrite: {
+          '^/tengxun' : ''
+        }
+      },
+      '/eastmoney':{
+        target: 'http://fund.eastmoney.com',
+        changeOrigin: true,
+        pathRewrite: {
+          '^/eastmoney' : ''
+        }
+      },
+      '/xiong': {
+        target: 'https://api.doctorxiong.club',
+        changeOrigin: true,
+        pathRewrite: {
+          '^/xiong' : ''
+        }
+      }
+    },
 
     // Various Dev Server settings
     host: 'localhost', // can be overwritten by process.env.HOST

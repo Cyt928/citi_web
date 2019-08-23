@@ -6,15 +6,23 @@ import router from './router'
 import VueRouter from 'vue-router'
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
+import axios from 'axios'
+import VueAxios from 'vue-axios'
+import VCharts from 'v-charts'
 
 Vue.use(ElementUI)
 Vue.use(VueRouter)
+Vue.use(axios, VueAxios)
+Vue.use(VCharts)
 Vue.config.productionTip = false
+Vue.prototype.$http = axios
 
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
   router,
-  components: { App },
+  components: {
+    App
+  },
   template: '<App/>'
 })

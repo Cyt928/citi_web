@@ -9,6 +9,16 @@ export default new Router({
       path: '/',
       name: 'index',
       component: () => import('@/views/index')
+    },
+    {
+      name: 'market',
+      path: '/market',
+      component: () => import('@/views/Market')
+    },
+    {
+      name: 'CompositeIndex',
+      path: '/CompositeIndex',
+      component: () => import('@/views/CompositeIndex')
     }
   ]
 })
