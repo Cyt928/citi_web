@@ -16,6 +16,7 @@ Vue.use(axios, VueAxios)
 Vue.use(VCharts)
 Vue.config.productionTip = false
 Vue.prototype.$http = axios
+Vue.prototype.$axios = axios
 
 /* eslint-disable no-new */
 new Vue({
