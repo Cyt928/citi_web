@@ -19,6 +19,10 @@
         </el-form-item>
           <el-button type="primary">登陆</el-button>
       </el-form>
+        <p>
+          没有账号?&nbsp;
+          <router-link to="register">点击注册</router-link>
+        </p>
       </div>
     </el-card>
   </div>

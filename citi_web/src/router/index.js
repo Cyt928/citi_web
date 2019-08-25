@@ -8,7 +8,13 @@ export default new Router({
     {
       path: '/',
       name: 'index',
-      component: () => import('@/views/index')
+      component: () => import('@/views/index'),
+      children: [
+        {
+          path: '/introduction',
+          component: () => import('@/views/introduction')
+        }
+      ]
     },
     {
       path: '/login',
