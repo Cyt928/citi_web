@@ -163,6 +163,7 @@ export default {
       'xAxis.0.axisLabel.rotate': 45
     }
     return {
+      input1: '',
       activeIndex: '2',
       activeName: 'minute',
       indexNumber: {

@@ -1,5 +1,6 @@
 <template>
-  <el-collapse v-model="activeName" accordion>
+  <div>
+  <el-collapse v-model="activeName1" accordion>
     <el-collapse-item title="沪深" name="1">
       <el-row :gutter="20">
         <el-col :span="8" v-for="num in hushenIndexNumber" :key="num.value">
@@ -53,14 +54,181 @@
       </el-row>
     </el-collapse-item>
   </el-collapse>
+  <div>
+    <el-tabs v-model="activeName2" type="border-card" @tab-click="handleClick">
+      <el-tab-pane label="沪A" name="first">
+        <el-card class="box-card" style="width:32%;display:inline-block">
+          <div>最热股票</div>
+          <span>
+                <el-divider></el-divider>
+              </span>
+          <el-table :data="tableData_sh_a_hot" style="display:inline-block" @cell-click="handle">
+            <el-table-column prop="name" label="股票名称" ></el-table-column>
+            <el-table-column prop="price" label="当前价" ></el-table-column>
+            <el-table-column prop="open" label="开盘价" ></el-table-column>
+            <el-table-column prop="changePercent" label="涨跌幅(%)" ></el-table-column>
+          </el-table>
+        </el-card>
+        <el-card class="box-card" style="width:32%;display:inline-block">
+          <div>成交量排行</div>
+          <span>
+                <el-divider></el-divider>
+              </span>
+          <el-table :data="tableData_sh_a_volume" style="display:inline-block" @cell-click="handle">
+            <el-table-column prop="name" label="股票名称" ></el-table-column>
+            <el-table-column prop="price" label="当前价" ></el-table-column>
+            <el-table-column prop="changePercent" label="涨跌幅(%)" ></el-table-column>
+            <el-table-column prop="volume" label="成交量(手）" ></el-table-column>
+          </el-table>
+        </el-card>
+        <el-card class="box-card" style="width:32%;display:inline-block">
+          <div>成交额排行</div>
+          <span>
+                <el-divider></el-divider>
+              </span>
+          <el-table :data="tableData_sh_a_amount" style="display:inline-block" @cell-click="handle">
+            <el-table-column prop="name" label="股票名称" ></el-table-column>
+            <el-table-column prop="price" label="当前价" ></el-table-column>
+            <el-table-column prop="changePercent" label="涨跌幅(%)" ></el-table-column>
+            <el-table-column prop="monthGrowth" label="成交额(万元)" ></el-table-column>
+          </el-table>
+        </el-card>
+      </el-tab-pane>
+      <el-tab-pane label="沪B" name="second">
+        <el-card class="box-card" style="width:32%;display:inline-block">
+          <div>最热股票</div>
+          <span>
+                <el-divider></el-divider>
+              </span>
+          <el-table :data="tableData_sh_a_hot" style="display:inline-block" @cell-click="handle">
+            <el-table-column prop="name" label="股票名称" ></el-table-column>
+            <el-table-column prop="price" label="当前价" ></el-table-column>
+            <el-table-column prop="open" label="开盘价" ></el-table-column>
+            <el-table-column prop="changePercent" label="涨跌幅(%)" ></el-table-column>
+          </el-table>
+        </el-card>
+        <el-card class="box-card" style="width:32%;display:inline-block">
+          <div>成交量排行</div>
+          <span>
+                <el-divider></el-divider>
+              </span>
+          <el-table :data="tableData_sh_b_volume" style="display:inline-block" @cell-click="handle">
+            <el-table-column prop="name" label="股票名称" ></el-table-column>
+            <el-table-column prop="price" label="当前价" ></el-table-column>
+            <el-table-column prop="changePercent" label="涨跌幅(%)" ></el-table-column>
+            <el-table-column prop="volume" label="成交量(手）" ></el-table-column>
+          </el-table>
+        </el-card>
+        <el-card class="box-card" style="width:32%;display:inline-block">
+          <div>成交额排行</div>
+          <span>
+                <el-divider></el-divider>
+              </span>
+          <el-table :data="tableData_sh_b_amount" style="display:inline-block" @cell-click="handle">
+            <el-table-column prop="name" label="股票名称" ></el-table-column>
+            <el-table-column prop="price" label="当前价" ></el-table-column>
+            <el-table-column prop="changePercent" label="涨跌幅(%)" ></el-table-column>
+            <el-table-column prop="monthGrowth" label="成交额(万元)" ></el-table-column>
+          </el-table>
+        </el-card>
+      </el-tab-pane>
+      <el-tab-pane label="深A" name="third">
+        <el-card class="box-card" style="width:32%;display:inline-block">
+          <div>最热股票</div>
+          <span>
+                <el-divider></el-divider>
+              </span>
+          <el-table :data="tableData_sh_a_hot" style="display:inline-block" @cell-click="handle">
+            <el-table-column prop="name" label="股票名称" ></el-table-column>
+            <el-table-column prop="price" label="当前价" ></el-table-column>
+            <el-table-column prop="open" label="开盘价" ></el-table-column>
+            <el-table-column prop="changePercent" label="涨跌幅(%)" ></el-table-column>
+          </el-table>
+        </el-card>
+        <el-card class="box-card" style="width:32%;display:inline-block">
+          <div>成交量排行</div>
+          <span>
+                <el-divider></el-divider>
+              </span>
+          <el-table :data="tableData_sz_a_volume" style="display:inline-block" @cell-click="handle">
+            <el-table-column prop="name" label="股票名称" ></el-table-column>
+            <el-table-column prop="price" label="当前价" ></el-table-column>
+            <el-table-column prop="changePercent" label="涨跌幅(%)" ></el-table-column>
+            <el-table-column prop="volume" label="成交量(手）" ></el-table-column>
+          </el-table>
+        </el-card>
+        <el-card class="box-card" style="width:32%;display:inline-block">
+          <div>成交额排行</div>
+          <span>
+                <el-divider></el-divider>
+              </span>
+          <el-table :data="tableData_sz_a_amount" style="display:inline-block" @cell-click="handle">
+            <el-table-column prop="name" label="股票名称" ></el-table-column>
+            <el-table-column prop="price" label="当前价" ></el-table-column>
+            <el-table-column prop="changePercent" label="涨跌幅(%)" ></el-table-column>
+            <el-table-column prop="monthGrowth" label="成交额(万元)" ></el-table-column>
+          </el-table>
+        </el-card>
+      </el-tab-pane>
+      <el-tab-pane label="深B" name="fourth">
+        <el-card class="box-card" style="width:32%;display:inline-block">
+          <div>最热股票</div>
+          <span>
+                <el-divider></el-divider>
+              </span>
+          <el-table :data="tableData_sh_a_hot" style="display:inline-block" @cell-click="handle">
+            <el-table-column prop="name" label="股票名称" ></el-table-column>
+            <el-table-column prop="price" label="当前价" ></el-table-column>
+            <el-table-column prop="open" label="开盘价" ></el-table-column>
+            <el-table-column prop="changePercent" label="涨跌幅(%)" ></el-table-column>
+          </el-table>
+        </el-card>
+        <el-card class="box-card" style="width:32%;display:inline-block">
+          <div>成交量排行</div>
+          <span>
+                <el-divider></el-divider>
+              </span>
+          <el-table :data="tableData_sz_b_volume" style="display:inline-block" @cell-click="handle">
+            <el-table-column prop="name" label="股票名称" ></el-table-column>
+            <el-table-column prop="price" label="当前价" ></el-table-column>
+            <el-table-column prop="changePercent" label="涨跌幅(%)" ></el-table-column>
+            <el-table-column prop="volume" label="成交量(手）" ></el-table-column>
+          </el-table>
+        </el-card>
+        <el-card class="box-card" style="width:32%;display:inline-block">
+          <div>成交额排行</div>
+          <span>
+                <el-divider></el-divider>
+              </span>
+          <el-table :data="tableData_sz_b_amount" style="display:inline-block" @cell-click="handle">
+            <el-table-column prop="name" label="股票名称" ></el-table-column>
+            <el-table-column prop="price" label="当前价" ></el-table-column>
+            <el-table-column prop="changePercent" label="涨跌幅(%)" ></el-table-column>
+            <el-table-column prop="monthGrowth" label="成交额(万元)" ></el-table-column>
+          </el-table>
+        </el-card>
+      </el-tab-pane>
+    </el-tabs>
+  </div>
+  </div>
 </template>
 
 <script>
 export default {
   name: 'Stock',
   data: function () {
+    this.tableData_sh_a_hot = []
+    this.tableData_sh_a_volume = []
+    this.tableData_sh_a_amount = []
+    this.tableData_sh_b_volume = []
+    this.tableData_sh_b_amount = []
+    this.tableData_sz_a_volume = []
+    this.tableData_sz_a_amount = []
+    this.tableData_sz_b_volume = []
+    this.tableData_sz_b_amount = []
     return {
-      activeName: '1',
+      activeName1: '1',
+      activeName2: 'first',
       hushenIndexNumber: [
         { value: 'sh000001',
           name: '上证指数',
@@ -162,6 +330,257 @@ export default {
     this.getHushenIndexNumber()
     this.getOtherIndexNumber()
   },
+  mounted () {
+    this.$axios
+      .post('/api/v1/stock/rank', {
+        sort: 'amount',
+        node: 'sh_a'
+      })
+      .then(res => {
+        console.log(res.data)
+        let data = res.data.data
+        let vm = this
+        data.forEach(el => {
+          let a = {name: '', price: '', changePercent: '', monthGrowth: ''}
+          a.code = el.code
+          a.high = el.high
+          a.low = el.low
+          a.volume = el.volume
+          a.open = el.open
+          a.name = el.name
+          a.close = el.close
+          a.price = el.price
+          a.priceChange = el.priceChange
+          a.changePercent = el.changePercent
+          a.monthGrowth = el.amount
+          vm.tableData_sh_a_amount.push(a)
+        })
+      })
+      .catch(function (error) {
+        console.log(error)
+      })
+    this.$axios
+      .post('/api/v1/stock/rank', {
+        sort: 'volume',
+        node: 'sh_a'
+      })
+      .then(res => {
+        console.log(res.data)
+        let data = res.data.data
+        let vm = this
+        data.forEach(el => {
+          let a = {name: '', price: '', changePercent: '', volume: ''}
+          a.code = el.code
+          a.high = el.high
+          a.low = el.low
+          a.volume = el.volume
+          a.open = el.open
+          a.name = el.name
+          a.close = el.close
+          a.price = el.price
+          a.priceChange = el.priceChange
+          a.changePercent = el.changePercent
+          a.monthGrowth = el.amount
+          vm.tableData_sh_a_volume.push(a)
+        })
+      })
+      .catch(function (error) {
+        console.log(error)
+      })
+    this.$axios
+      .post('/api/v1/stock/rank', {
+        sort: 'amount',
+        node: 'sh_b'
+      })
+      .then(res => {
+        console.log(res.data)
+        let data = res.data.data
+        let vm = this
+        data.forEach(el => {
+          let a = {name: '', price: '', changePercent: '', monthGrowth: ''}
+          a.code = el.code
+          a.high = el.high
+          a.low = el.low
+          a.volume = el.volume
+          a.open = el.open
+          a.name = el.name
+          a.close = el.close
+          a.price = el.price
+          a.priceChange = el.priceChange
+          a.changePercent = el.changePercent
+          a.monthGrowth = el.amount
+          vm.tableData_sh_b_amount.push(a)
+        })
+      })
+      .catch(function (error) {
+        console.log(error)
+      })
+    this.$axios
+      .post('/api/v1/stock/rank', {
+        sort: 'volume',
+        node: 'sh_b'
+      })
+      .then(res => {
+        console.log(res.data)
+        let data = res.data.data
+        let vm = this
+        data.forEach(el => {
+          let a = {name: '', price: '', changePercent: '', volume: ''}
+          a.code = el.code
+          a.high = el.high
+          a.low = el.low
+          a.volume = el.volume
+          a.open = el.open
+          a.name = el.name
+          a.close = el.close
+          a.price = el.price
+          a.priceChange = el.priceChange
+          a.changePercent = el.changePercent
+          a.monthGrowth = el.amount
+          vm.tableData_sh_b_volume.push(a)
+        })
+      })
+      .catch(function (error) {
+        console.log(error)
+      })
+    this.$axios
+      .post('/api/v1/stock/rank', {
+        sort: 'amount',
+        node: 'sz_a'
+      })
+      .then(res => {
+        console.log(res.data)
+        let data = res.data.data
+        let vm = this
+        data.forEach(el => {
+          let a = {name: '', price: '', changePercent: '', monthGrowth: ''}
+          a.code = el.code
+          a.high = el.high
+          a.low = el.low
+          a.volume = el.volume
+          a.open = el.open
+          a.name = el.name
+          a.close = el.close
+          a.price = el.price
+          a.priceChange = el.priceChange
+          a.changePercent = el.changePercent
+          a.monthGrowth = el.amount
+          vm.tableData_sz_a_amount.push(a)
+        })
+      })
+      .catch(function (error) {
+        console.log(error)
+      })
+    this.$axios
+      .post('/api/v1/stock/rank', {
+        sort: 'volume',
+        node: 'sz_a'
+      })
+      .then(res => {
+        console.log(res.data)
+        let data = res.data.data
+        let vm = this
+        data.forEach(el => {
+          let a = {name: '', price: '', changePercent: '', volume: ''}
+          a.code = el.code
+          a.high = el.high
+          a.low = el.low
+          a.volume = el.volume
+          a.open = el.open
+          a.name = el.name
+          a.close = el.close
+          a.price = el.price
+          a.priceChange = el.priceChange
+          a.changePercent = el.changePercent
+          a.monthGrowth = el.amount
+          vm.tableData_sz_a_volume.push(a)
+        })
+      })
+      .catch(function (error) {
+        console.log(error)
+      })
+    this.$axios
+      .post('/api/v1/stock/rank', {
+        sort: 'amount',
+        node: 'sz_b'
+      })
+      .then(res => {
+        console.log(res.data)
+        let data = res.data.data
+        let vm = this
+        data.forEach(el => {
+          let a = {name: '', price: '', changePercent: '', monthGrowth: ''}
+          a.code = el.code
+          a.high = el.high
+          a.low = el.low
+          a.volume = el.volume
+          a.open = el.open
+          a.name = el.name
+          a.close = el.close
+          a.price = el.price
+          a.priceChange = el.priceChange
+          a.changePercent = el.changePercent
+          a.monthGrowth = el.amount
+          vm.tableData_sz_b_amount.push(a)
+        })
+      })
+      .catch(function (error) {
+        console.log(error)
+      })
+    this.$axios
+      .post('/api/v1/stock/rank', {
+        sort: 'volume',
+        node: 'sz_b'
+      })
+      .then(res => {
+        console.log(res.data)
+        let data = res.data.data
+        let vm = this
+        data.forEach(el => {
+          let a = {name: '', price: '', changePercent: '', volume: ''}
+          a.code = el.code
+          a.high = el.high
+          a.low = el.low
+          a.volume = el.volume
+          a.open = el.open
+          a.name = el.name
+          a.close = el.close
+          a.price = el.price
+          a.priceChange = el.priceChange
+          a.changePercent = el.changePercent
+          a.monthGrowth = el.amount
+          vm.tableData_sz_b_volume.push(a)
+        })
+      })
+      .catch(function (error) {
+        console.log(error)
+      })
+    this.$axios
+      .get('/api/v1/stock/hot')
+      .then(res => {
+        console.log(res.data)
+        let data = res.data.data
+        let vm = this
+        data.forEach(el => {
+          let a = {name: '', price: '', open: '', changePercent: ''}
+          a.code = el.code
+          a.high = el.high
+          a.low = el.low
+          a.volume = el.volume
+          a.open = el.open
+          a.name = el.name
+          a.close = el.close
+          a.price = el.price
+          a.priceChange = el.priceChange
+          a.changePercent = el.changePercent
+          a.monthGrowth = el.amount
+          vm.tableData_sh_a_hot.push(a)
+        })
+      })
+      .catch(function (error) {
+        console.log(error)
+      })
+  },
   methods: {
     go (index) {
       this.$router.push({
@@ -178,6 +597,24 @@ export default {
           change: index.change,
           total: index.total,
           totalAmount: index.totalAmount
+        }
+      })
+    },
+    go_stock (index) {
+      this.$router.push({
+        name: 'CompositeIndex',
+        path: '/CompositeIndex',
+        params: {
+          value: index.code,
+          name: index.name,
+          now: index.price,
+          open: index.open,
+          high: index.high,
+          low: index.low,
+          lastClose: index.close,
+          change: index.priceChange,
+          total: index.volume / 100000000,
+          totalAmount: index.monthGrowth / 10000
         }
       })
     },
@@ -235,11 +672,27 @@ export default {
           console.log(error)
         })
       })
+    },
+    handle (column) {
+      this.go_stock(column)
     }
   }
 }
 </script>
 
-<style scoped>
+<style>
+  .text {
+    font-size: 14px;
+  }
+
+  .item {
+    padding: 18px 0;
+  }
+
+  .box-card {
+  }
+  .el-select .el-input {
+    width: 130px;
+  }
 
 </style>
