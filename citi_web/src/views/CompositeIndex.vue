@@ -253,7 +253,6 @@ export default {
       this.indexNumber.name = index.name
       this.indexNumber.now = index.now
       this.indexNumber.open = index.open
-      this.indexNumber.close = index.close
       this.indexNumber.high = index.high
       this.indexNumber.low = index.low
       this.indexNumber.lastClose = index.lastClose
@@ -341,6 +340,7 @@ export default {
     getKDailyChart: function () {
       let vm = this
       let allRequests = []
+      // 先获取发行年份
       this.$http({
         method: 'get',
         url: '/tengxun/flashdata/hushen/latest/weekly/' + vm.indexNumber.value + '.js'

@@ -172,7 +172,6 @@ export default {
           name: index.name,
           now: index.now,
           open: index.open,
-          close: index.close,
           high: index.high,
           low: index.low,
           lastClose: index.lastClose,
@@ -195,7 +194,7 @@ export default {
           }
         }).then(res => {
           let a = JSON.stringify(res.data).split(',')
-          for (var i = 0; i < 6; i++) {
+          for (let i = 0; i < 6; i++) {
             a[i] = parseFloat(a[i]).toFixed(2)
           }
           n.open = a[1]
