@@ -1,17 +1,27 @@
 <template>
   <el-container>
-    <el-header>
+    <el-header style="margin: 0;padding: 0">
       <el-menu
         :default-active="activeIndex"
         mode="horizontal"
-        @select="handleSelect"
-        active-text-color="#ffd04b">
-        <el-menu-item index="1">首页（以后改成图标显示）</el-menu-item>
+        style="position: fixed;width: 100%">
+        <el-menu-item style="margin-left: 12%" index="1">
+          <router-link tag="el-menu-item" to="/">
+            <el-image>
+              <div slot="error" class="image-slot">
+                <i class="el-icon-picture-outline"></i>
+              </div>
+            </el-image>
+          </router-link>
+        </el-menu-item>
         <el-menu-item index="2">
           <template slot="title"><router-link tag="el-menu-item" to="/market">行情展示</router-link></template>
         </el-menu-item>
         <el-menu-item index="3">我的历史</el-menu-item>
         <el-menu-item index="4">方案跟踪</el-menu-item>
+        <div style="float: right;margin-right: 15%">
+          <el-menu-item><template slot="title"><el-avatar></el-avatar></template></el-menu-item>
+        </div>
       </el-menu>
     </el-header>
     <el-container>

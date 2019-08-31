@@ -343,14 +343,8 @@ export default {
         data.forEach(el => {
           let a = {name: '', price: '', changePercent: '', monthGrowth: ''}
           a.code = el.code
-          a.high = el.high
-          a.low = el.low
-          a.volume = el.volume
-          a.open = el.open
           a.name = el.name
-          a.close = el.close
           a.price = el.price
-          a.priceChange = el.priceChange
           a.changePercent = el.changePercent
           a.monthGrowth = el.amount
           vm.tableData_sh_a_amount.push(a)
@@ -371,16 +365,10 @@ export default {
         data.forEach(el => {
           let a = {name: '', price: '', changePercent: '', volume: ''}
           a.code = el.code
-          a.high = el.high
-          a.low = el.low
           a.volume = el.volume
-          a.open = el.open
           a.name = el.name
-          a.close = el.close
           a.price = el.price
-          a.priceChange = el.priceChange
           a.changePercent = el.changePercent
-          a.monthGrowth = el.amount
           vm.tableData_sh_a_volume.push(a)
         })
       })
@@ -399,14 +387,8 @@ export default {
         data.forEach(el => {
           let a = {name: '', price: '', changePercent: '', monthGrowth: ''}
           a.code = el.code
-          a.high = el.high
-          a.low = el.low
-          a.volume = el.volume
-          a.open = el.open
           a.name = el.name
-          a.close = el.close
           a.price = el.price
-          a.priceChange = el.priceChange
           a.changePercent = el.changePercent
           a.monthGrowth = el.amount
           vm.tableData_sh_b_amount.push(a)
@@ -427,16 +409,10 @@ export default {
         data.forEach(el => {
           let a = {name: '', price: '', changePercent: '', volume: ''}
           a.code = el.code
-          a.high = el.high
-          a.low = el.low
           a.volume = el.volume
-          a.open = el.open
           a.name = el.name
-          a.close = el.close
           a.price = el.price
-          a.priceChange = el.priceChange
           a.changePercent = el.changePercent
-          a.monthGrowth = el.amount
           vm.tableData_sh_b_volume.push(a)
         })
       })
@@ -455,14 +431,8 @@ export default {
         data.forEach(el => {
           let a = {name: '', price: '', changePercent: '', monthGrowth: ''}
           a.code = el.code
-          a.high = el.high
-          a.low = el.low
-          a.volume = el.volume
-          a.open = el.open
           a.name = el.name
-          a.close = el.close
           a.price = el.price
-          a.priceChange = el.priceChange
           a.changePercent = el.changePercent
           a.monthGrowth = el.amount
           vm.tableData_sz_a_amount.push(a)
@@ -483,16 +453,10 @@ export default {
         data.forEach(el => {
           let a = {name: '', price: '', changePercent: '', volume: ''}
           a.code = el.code
-          a.high = el.high
-          a.low = el.low
           a.volume = el.volume
-          a.open = el.open
           a.name = el.name
-          a.close = el.close
           a.price = el.price
-          a.priceChange = el.priceChange
           a.changePercent = el.changePercent
-          a.monthGrowth = el.amount
           vm.tableData_sz_a_volume.push(a)
         })
       })
@@ -511,14 +475,8 @@ export default {
         data.forEach(el => {
           let a = {name: '', price: '', changePercent: '', monthGrowth: ''}
           a.code = el.code
-          a.high = el.high
-          a.low = el.low
-          a.volume = el.volume
-          a.open = el.open
           a.name = el.name
-          a.close = el.close
           a.price = el.price
-          a.priceChange = el.priceChange
           a.changePercent = el.changePercent
           a.monthGrowth = el.amount
           vm.tableData_sz_b_amount.push(a)
@@ -539,16 +497,10 @@ export default {
         data.forEach(el => {
           let a = {name: '', price: '', changePercent: '', volume: ''}
           a.code = el.code
-          a.high = el.high
-          a.low = el.low
           a.volume = el.volume
-          a.open = el.open
           a.name = el.name
-          a.close = el.close
           a.price = el.price
-          a.priceChange = el.priceChange
           a.changePercent = el.changePercent
-          a.monthGrowth = el.amount
           vm.tableData_sz_b_volume.push(a)
         })
       })
@@ -564,16 +516,9 @@ export default {
         data.forEach(el => {
           let a = {name: '', price: '', open: '', changePercent: ''}
           a.code = el.code
-          a.high = el.high
-          a.low = el.low
-          a.volume = el.volume
           a.open = el.open
           a.name = el.name
-          a.close = el.close
-          a.price = el.price
-          a.priceChange = el.priceChange
           a.changePercent = el.changePercent
-          a.monthGrowth = el.amount
           vm.tableData_sh_a_hot.push(a)
         })
       })
@@ -587,16 +532,7 @@ export default {
         name: 'CompositeIndex',
         path: '/CompositeIndex',
         params: {
-          value: index.value,
-          name: index.name,
-          now: index.now,
-          open: index.open,
-          high: index.high,
-          low: index.low,
-          lastClose: index.lastClose,
-          change: index.change,
-          total: index.total,
-          totalAmount: index.totalAmount
+          value: index.value
         }
       })
     },
@@ -605,16 +541,7 @@ export default {
         name: 'CompositeIndex',
         path: '/CompositeIndex',
         params: {
-          value: index.code,
-          name: index.name,
-          now: index.price,
-          open: index.open,
-          high: index.high,
-          low: index.low,
-          lastClose: index.close,
-          change: index.priceChange,
-          total: index.volume / 100000000,
-          totalAmount: index.monthGrowth / 10000
+          value: index.code
         }
       })
     },

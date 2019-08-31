@@ -48,10 +48,7 @@
       </el-table>
       <el-pagination
         background
-        layout="prev, pager, next"
-        :total="5183"
-        :page-size="30"
-        :pager-count="6"
+        layout="prev, next"
         :current-page.sync="currentPage">
       </el-pagination>
     </el-main>
@@ -69,7 +66,7 @@ export default {
       periodsValue: ['lastWeek', 'lastMonth', 'thisYear', 'lastYear'],
       value1: [],
       value2: '',
-      currentPage: 2
+      currentPage: 1
     }
   },
   computed: {
@@ -89,7 +86,6 @@ export default {
       let allRequests = []
       for (let i = 3 * (this.currentPage - 1); i < 3 * this.currentPage; i++) {
         let params = {}
-        // if(this.value2)
         params.fundType = this.value1
         params.sort = this.periodsValue[vm.periods.indexOf(vm.value2)]
         params.pageIndex = i + 1
@@ -118,44 +114,9 @@ export default {
         }).catch(error => {
           console.log(error)
         })
+      this.currentPage = 1
       return result
     }
-    // getAllTypes: function () {
-    //   this.$http({
-    //     method: 'get',
-    //     url: '/eastmoney/js/fundcode_search.js'
-    //   }).then(res => {
-    //     let a = res.data
-    //     a = a.slice(8, a.length - 1)
-    //     let temp = JSON.parse('{"all":' + a + '}')
-    //     temp = temp.all
-    //     // temp为所有fund的一个数列
-    //     // result是所有基金种类名
-    //     let result = []
-    //     let counter = 1
-    //     let vm = this
-    //     temp.forEach(function (item) {
-    //       // 加入新的基金类型
-    //       if (result.indexOf(item[3]) === -1) {
-    //         vm.allFunds.push([])
-    //         let one = {}
-    //         one.value = counter
-    //         one.label = item[3]
-    //         result.push(item[3])
-    //         vm.types.push(one)
-    //         counter++
-    //       }
-    //       // 将基金名放入对应的基金类型中
-    //       let oneFund = {}
-    //       oneFund.code = item[0]
-    //       oneFund.name = item[2]
-    //       oneFund.type = item[3]
-    //       vm.allFunds[result.indexOf(item[3])].push(oneFund)
-    //     })
-    //     this.getAllFundsDetail()
-    //   }).catch(error => {
-    //     console.log(error)
-    //   })
   }
 }
 
