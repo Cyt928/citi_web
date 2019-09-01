@@ -13,18 +13,28 @@ export default new Router({
         {
           path: '/introduction',
           component: () => import('@/views/introduction')
+        },
+        {
+          name: 'market',
+          path: '/market',
+          component: () => import('@/views/Market')
+        },
+        {
+          name: 'func',
+          path: '/func',
+          component: () => import('@/views/func')
+        },
+        {
+          name: 'tracer',
+          path: '/tracer',
+          component: () => import('@/views/tracer')
+        },
+        {
+          name: 'CompositeIndex',
+          path: '/CompositeIndex',
+          component: () => import('@/views/CompositeIndex')
         }
       ]
-    },
-    {
-      name: 'market',
-      path: '/market',
-      component: () => import('@/views/Market')
-    },
-    {
-      name: 'CompositeIndex',
-      path: '/CompositeIndex',
-      component: () => import('@/views/CompositeIndex')
     },
     {
       path: '/login',

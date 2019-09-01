@@ -1,41 +1,33 @@
 <template>
   <el-container>
-    <el-header>
-      <el-menu
-        :default-active="activeIndex"
-        mode="horizontal"
-        active-text-color="#ffd04b">
-        <el-menu-item index="1">首页（以后改成图标显示）</el-menu-item>
-        <el-menu-item index="2">
-          <template slot="title"><router-link tag="el-menu-item" to="/market">行情展示</router-link></template>
-        </el-menu-item>
-        <el-menu-item index="3">我的历史</el-menu-item>
-        <el-menu-item index="4">方案跟踪</el-menu-item>
-      </el-menu>
-    </el-header>
     <el-container>
       <el-aside width="100px">
       </el-aside>
       <el-main>
-        <h3>{{indexNumber.name}}({{indexNumber.value}})</h3>
-        <el-row>
+        <el-card>
+          <h3>{{indexNumber.name}}({{indexNumber.value}})</h3>
+          <el-row>
           <el-col>
             <span style="font-weight: bolder">{{indexNumber.now}}</span> {{indexNumber.change}} {{(indexNumber.change/indexNumber.lastClose*100).toFixed(2)}}%
           </el-col>
-        </el-row>
-        <el-row :gutter="20">
-          <el-col :span="8">最高：{{indexNumber.high}}</el-col>
-          <el-col :span="8">今开：{{indexNumber.open}}</el-col>
-          <el-col :span="8">成交量：{{indexNumber.total}}亿手</el-col>
-        </el-row>
-        <el-row :gutter="20">
-          <el-col :span="8">最低：{{indexNumber.low}}</el-col>
-          <el-col :span="8">昨收：{{indexNumber.lastClose}}</el-col>
-          <el-col :span="8">成交额：{{indexNumber.totalAmount.toFixed(2)}}亿</el-col>
-          <el-col :span="8">振幅：{{(((indexNumber.high-indexNumber.low)/indexNumber.now)*100).toFixed(2)}}%</el-col>
-        </el-row>
-        <el-divider></el-divider>
-        <el-tabs v-model="activeName">
+          </el-row>
+          <el-row style="display: flex;justify-content: center;padding-left: 12%">
+          <el-col :span="8" style="display: flex;flex-direction: column;align-items: flex-start">
+            <div>最高：{{indexNumber.high}}</div>
+            <div>最低：{{indexNumber.low}}</div>
+            <div>振幅：{{(((indexNumber.high-indexNumber.low)/indexNumber.now)*100).toFixed(2)}}%</div>
+          </el-col>
+          <el-col :span="8" style="display: flex;flex-direction: column;align-items: flex-start">
+            <div>今开：{{indexNumber.open}}</div>
+            <div>昨收：{{indexNumber.lastClose}}</div>
+          </el-col>
+          <el-col :span="8" style="display: flex;flex-direction: column;align-items: flex-start">
+            <div>成交量：{{indexNumber.total}}亿手</div>
+            <div>成交额：{{indexNumber.totalAmount.toFixed(2)}}亿</div>
+          </el-col>
+          </el-row>
+          <el-divider></el-divider>
+          <el-tabs v-model="activeName">
           <el-tab-pane label="分时" name="minute" lazy=true>
             <ve-line :data="minuteChartData" :settings="minuteChartSettings" :legend-visible="false"></ve-line>
             <ve-histogram :data="minuteChartDataHistogram" :settings="minuteChartSettingsHistogram" :legend-visible="false"></ve-histogram>
@@ -67,9 +59,9 @@
             <ve-candle :data="sixtyMinuteChartData" :settings="sixtyMinuteChartSettings"></ve-candle>
           </el-tab-pane>
         </el-tabs>
+        </el-card>
       </el-main>
       <el-aside width="100px">
-
       </el-aside>
     </el-container>
   </el-container>
