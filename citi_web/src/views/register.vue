@@ -124,6 +124,7 @@ export default {
       }
     },
     submitForm () {
+      let that = this
       this.$axios({
         method: 'post',
         url: 'http://localhost:8080/register',
@@ -136,7 +137,7 @@ export default {
       }).then((res) => {
         if (res.data.success) {
           alert('注册成功')
-          // TODO 跳转至填写问卷界面
+          that.$router.push('/login')
         }
       }).catch(function (error) {
         alert(error)

@@ -19,7 +19,7 @@
       </el-menu-item>
       <el-menu-item index="4"><router-link tag="el-menu-item" to="/tracer">方案跟踪</router-link></el-menu-item>
       <div  v-if="loginStatus === '1'" style="float: right;margin-right: 15%">
-        <el-menu-item v-on:click="exit"><template slot="title"><el-avatar></el-avatar></template></el-menu-item>
+        <el-menu-item v-on:click="exit"><template slot="title"><el-avatar src="https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png"></el-avatar></template></el-menu-item>
       </div>
       <div v-else style="float: right;display: flex;flex-direction: row;margin-right: 15%">
       <el-menu-item >
@@ -49,6 +49,8 @@ export default {
       console.log(key, keyPath)
     },
     exit () {
+      sessionStorage.removeItem('loginStatus')
+      sessionStorage.removeItem('username')
       this.$router.push({ path: '/login' })
     }
   },

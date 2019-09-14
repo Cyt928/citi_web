@@ -19,7 +19,7 @@
         <el-form-item label="密码:" :rules="[
       { required: true, message: '请输入密码', trigger: 'blur' }
     ]" prop="password">
-          <el-input type="password"  v-model="loginForm.username" autocomplete="off"></el-input>
+          <el-input type="password"  v-model="loginForm.password" autocomplete="off"></el-input>
         </el-form-item>
           <el-button type="primary" @click="submitLoginForm">登陆</el-button>
       </el-form>
@@ -59,14 +59,15 @@ export default {
           url: 'http://localhost:8080/login',
           data: {
             emailAdd: '',
-            username: this.registerForm.username,
-            password: this.registerForm.password,
+            username: this.loginForm.username,
+            password: this.loginForm.password,
             tag: 0
           }
         }).then((res) => {
+          console.log(res.data)
           if (res.data.success) {
             sessionStorage.setItem('username', that.loginForm.username)
-            this.$Message.success('登录成功')
+            that.$router.push('/introduction')
             sessionStorage.setItem('loginStatus', '1')
           } else {
             alert(res.data.content)
