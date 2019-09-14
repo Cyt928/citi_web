@@ -18,8 +18,13 @@
         <template slot="title"><router-link tag="el-menu-item" to="/market">行情展示</router-link></template>
       </el-menu-item>
       <el-menu-item index="4"><router-link tag="el-menu-item" to="/tracer">方案跟踪</router-link></el-menu-item>
-      <div style="float: right;margin-right: 15%">
+      <div  v-if="loginStatus === '1'" style="float: right;margin-right: 15%">
         <el-menu-item v-on:click="exit"><template slot="title"><el-avatar></el-avatar></template></el-menu-item>
+      </div>
+      <div v-else style="float: right;display: flex;flex-direction: row;margin-right: 15%">
+      <el-menu-item >
+        <router-link tag="el-menu-item" to="login">登录/注册</router-link>
+      </el-menu-item>
       </div>
     </el-menu>
   </el-header>
@@ -35,7 +40,8 @@
 export default {
   data () {
     return {
-      activeIndex: '1'
+      activeIndex: '1',
+      loginStatus: '0'
     }
   },
   methods: {
@@ -45,6 +51,9 @@ export default {
     exit () {
       this.$router.push({ path: '/login' })
     }
+  },
+  created: function () {
+    this.loginStatus = sessionStorage.getItem('loginStatus')
   }
 }
 </script>

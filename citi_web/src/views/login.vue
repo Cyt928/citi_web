@@ -10,14 +10,18 @@
       <h3 style="margin-bottom: 20px">登陆系统</h3>
       <el-divider></el-divider>
       <div style="display: flex; flex-direction: column;justify-content: flex-start">
-        <el-form style="padding: 16px;margin: 16px" status-icon label-width="80px" label-position="left" class="demo-ruleForm">
-        <el-form-item label="用户名:" prop="username">
-          <el-input  autocomplete="off"></el-input>
+        <el-form style="padding: 16px;margin: 16px" status-icon label-width="80px" label-position="left" :model="loginForm" ref="loginForm">
+        <el-form-item label="用户名:" :rules="[
+      { required: true, message: '请输入用户名', trigger: 'blur' }
+    ]" prop="username">
+          <el-input  v-model="loginForm.username" autocomplete="off"></el-input>
         </el-form-item>
-        <el-form-item label="密码:" prop="password">
-          <el-input type="password" autocomplete="off"></el-input>
+        <el-form-item label="密码:" :rules="[
+      { required: true, message: '请输入密码', trigger: 'blur' }
+    ]" prop="password">
+          <el-input type="password"  v-model="loginForm.username" autocomplete="off"></el-input>
         </el-form-item>
-          <el-button type="primary">登陆</el-button>
+          <el-button type="primary" @click="submitLoginForm">登陆</el-button>
       </el-form>
         <p>
           没有账号?&nbsp;
@@ -34,12 +38,43 @@ export default {
   data () {
     return {
       videoCanPlay: false,
-      fixStyle: ''
+      fixStyle: '',
+      loginForm: {
+        username: '',
+        password: ''
+      }
     }
   },
   methods: {
     canplay () {
       this.videoCanPlay = true
+    },
+    submitLoginForm () {
+      if (!this.loginForm.username || !this.loginForm.password) {
+        alert('请输入用户名和密码')
+      } else {
+        let that = this
+        this.$axios({
+          method: 'post',
+          url: 'http://localhost:8080/login',
+          data: {
+            emailAdd: '',
+            username: this.registerForm.username,
+            password: this.registerForm.password,
+            tag: 0
+          }
+        }).then((res) => {
+          if (res.data.success) {
+            sessionStorage.setItem('username', that.loginForm.username)
+            this.$Message.success('登录成功')
+            sessionStorage.setItem('loginStatus', '1')
+          } else {
+            alert(res.data.content)
+          }
+        }).catch(function (error) {
+          alert(error)
+        })
+      }
     }
   },
   mounted: function () {

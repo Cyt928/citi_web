@@ -28,9 +28,10 @@
         </el-form-item>
           <el-form-item prop="password" label="密码" :rules="[
       { required: true, message: '请输入密码', trigger: 'blur' }
-    ]"> <el-input style="width:280px;float: left" v-model="registerForm.password" show-password></el-input>
+    ]"> <el-input style="width:280px;float: left" v-model="registerForm.password" type="password"></el-input>
           </el-form-item>
-          <el-form-item prop="checkPass" required label="确认密码" :rules="rulePass"> <el-input style="width:280px;float: left" v-model="checkPassword" show-password></el-input>
+          <el-form-item prop="checkPassword"  label="确认密码" :rules="rulePass">
+            <el-input style="width:280px;float: left" type="password" v-model="registerForm.checkPassword" auto-complete="off"></el-input>
           </el-form-item>
         </el-form>
         <el-button type="primary" @click="compareCode()">提交</el-button>
@@ -43,7 +44,7 @@
 export default {
   name: 'login',
   data () {
-    const checkPass = (rule, value, callback) => {
+    let checkPass = (rule, value, callback) => {
       if (value === '') {
         callback(new Error('请再次输入密码'))
       } else if (value !== this.registerForm.password) {
@@ -62,10 +63,10 @@ export default {
         email: '',
         username: '',
         password: '',
-        tag: 0
+        tag: 0,
+        checkPassword: ''
       },
       checkCode: '',
-      checkPassword: '',
       rulePass: [
         {validator: checkPass, trigger: 'blur'}
       ]
@@ -97,27 +98,30 @@ export default {
       })
     },
     compareCode () {
-      // TODO 确认表单无误
-      let that = this
-      this.$axios({
-        method: 'post',
-        url: 'http://localhost:8080/CompareVerfCode',
-        data: {
-          email: this.registerForm.email,
-          code: this.checkCode
-        }
-      }).then((res) => {
-        console.log(res)
-        if (res.data.success) {
-          if (res.data.content === '验证成功') {
-            that.submitForm()
-          } else {
-            alert(res.data.content)
+      if (!this.registerForm.checkPassword || !this.registerForm.password || !this.registerForm.username || !this.registerForm.email) {
+        alert('请完成表单')
+      } else {
+        let that = this
+        this.$axios({
+          method: 'post',
+          url: 'http://localhost:8080/CompareVerfCode',
+          data: {
+            email: this.registerForm.email,
+            code: this.checkCode
           }
-        }
-      }).catch(function (error) {
-        alert(error)
-      })
+        }).then((res) => {
+          console.log(res)
+          if (res.data.success) {
+            if (res.data.content === '验证成功') {
+              that.submitForm()
+            } else {
+              alert(res.data.content)
+            }
+          }
+        }).catch(function (error) {
+          alert(error)
+        })
+      }
     },
     submitForm () {
       this.$axios({
