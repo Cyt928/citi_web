@@ -9,7 +9,7 @@
       <el-menu-item style="margin-left: 12%" index="1">
         <el-image>
           <div slot="error" class="image-slot">
-            <i class="el-icon-picture-outline"></i>
+            <i class="el-icon-orange"></i>
           </div>
         </el-image>
       </el-menu-item>
