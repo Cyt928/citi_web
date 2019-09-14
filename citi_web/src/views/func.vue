@@ -14,7 +14,7 @@
           </el-card>
         </el-col>
       </el-row>
-<!--      -->
+      <!--   问卷   -->
       <el-row v-else-if="step===1" style="width: 100%">
         <el-col :span="6">
           <div style="height: 360px"></div>
@@ -27,7 +27,7 @@
               <el-step title="完成选择"></el-step>
             </el-steps>
             <el-divider></el-divider>
-            <Query></Query>
+            <Query @nextStep="nextStep"></Query>
           </el-card>
         </el-col>
         <el-col :span="6">
@@ -36,13 +36,13 @@
           </el-card>
         </el-col>
       </el-row>
-      <!--      -->
+      <!--  方案展示    -->
       <el-row v-else-if="step===2" style="width: 100%">
         <el-col :span="6">
           <div style="height: 360px"></div>
         </el-col>
         <el-col :span="12">
-          <el-card shadow="hover" style="min-height: 700px;padding: 12px">
+          <el-card shadow="hover" style="min-height: 700px;padding: 12px;">
             <el-steps :active="step" style="text-align:left">
               <el-step title="填写问卷"></el-step>
               <el-step title="方案选择"></el-step>
@@ -64,6 +64,7 @@
 <script>
 import Query from '../components/Query'
 import Scheme from '../components/Scheme'
+
 export default {
   data () {
     return {
@@ -71,7 +72,7 @@ export default {
       active: 1
     }
   },
-  comments: {
+  components: {
     Query,
     Scheme
   },
@@ -81,7 +82,13 @@ export default {
     },
     goToStep2 () {
       this.step = 2
+    },
+    nextStep () {
+      this.step = this.step + 1
     }
+  },
+  mounted () {
+    // TODO 需要一个接口返回该用户是否填写过问卷
   }
 }
 </script>

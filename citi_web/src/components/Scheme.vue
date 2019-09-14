@@ -1,6 +1,6 @@
 <template>
   <el-container>
-    <el-card style="width: 80%">
+    <el-card style="width: 100%">
       <div slot="header">
         <span>投资方案</span>
         <el-button style="float: right; padding: 3px 0" type="text">操作按钮</el-button>
@@ -15,7 +15,7 @@
 
 <script>
 export default {
-  name: 'scheme'
+  name: 'Scheme'
 }
 </script>
 
