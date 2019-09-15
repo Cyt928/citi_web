@@ -69,7 +69,7 @@ export default {
           console.log(res.data)
           if (res.data.success) {
             // TODO 存id
-            sessionStorage.setItem('id', res.data.content.userId)
+            sessionStorage.setItem('id', res.data.content.id)
             sessionStorage.setItem('username', that.loginForm.username)
             that.$router.push('/introduction')
             sessionStorage.setItem('loginStatus', '1')
