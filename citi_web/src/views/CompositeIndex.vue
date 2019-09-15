@@ -1,36 +1,11 @@
 <template>
   <el-container>
-    <el-header style="margin: 0;padding: 0">
-      <el-menu
-        :default-active="activeIndex"
-        mode="horizontal"
-        style="position: fixed;width: 100%">
-        <el-menu-item style="margin-left: 12%" index="1">
-          <router-link tag="el-menu-item" to="/">
-            <el-image>
-              <div slot="error" class="image-slot">
-                <i class="el-icon-picture-outline"></i>
-              </div>
-            </el-image>
-          </router-link>
-        </el-menu-item>
-        <el-menu-item index="2">
-          <template slot="title"><router-link tag="el-menu-item" to="/market">行情展示</router-link></template>
-        </el-menu-item>
-        <el-menu-item index="3">我的历史</el-menu-item>
-        <el-menu-item index="4">方案跟踪</el-menu-item>
-        <div style="float: right;margin-right: 15%">
-          <el-menu-item><template slot="title"><el-avatar></el-avatar></template></el-menu-item>
-        </div>
-      </el-menu>
-    </el-header>
-    <el-container>
-      <el-aside width="100px">
-      </el-aside>
-      <el-main>
-        <el-card>
-          <h3>{{indexNumber.name}}({{indexNumber.value}})</h3>
-          <el-row>
+    <el-aside width="100px">
+    </el-aside>
+    <el-main>
+      <el-card>
+        <h3>{{indexNumber.name}}({{indexNumber.value}})</h3>
+        <el-row>
           <el-col>
             <span style="font-weight: bolder">{{indexNumber.now}}</span> {{indexNumber.change}} {{(indexNumber.change/indexNumber.lastClose*100).toFixed(2)}}%
           </el-col>
@@ -48,41 +23,74 @@
         </el-row>
         <el-divider></el-divider>
         <el-tabs v-model="activeName">
-          <el-tab-pane label="分时" name="minute" lazy=true>
-            <ve-line :data="minuteChartData" :settings="minuteChartSettings" :legend-visible="false"></ve-line>
-            <ve-histogram :data="minuteChartDataHistogram" :settings="minuteChartSettingsHistogram" :legend-visible="false"></ve-histogram>
+          <el-tab-pane label="分时"
+                       name="minute"
+                       lazy=true>
+            <ve-line :data="minuteChartData"
+                     :settings="minuteChartSettings"
+                     :legend-visible="false"></ve-line>
+            <ve-histogram :data="minuteChartDataHistogram"
+                          :settings="minuteChartSettingsHistogram"
+                          :legend-visible="false"></ve-histogram>
           </el-tab-pane>
-          <el-tab-pane label="五日" name="fiveDay" lazy=true>
-            <ve-line :data="fiveDayChartData" :settings="fiveDayChartSettings"></ve-line>
-            <ve-histogram :data="fiveDayChartDataHistogram" :settings="fiveDayChartSettingsHistogram" :legend-visible="false"></ve-histogram>
+          <el-tab-pane label="五日"
+                       name="fiveDay"
+                       lazy=true>
+            <ve-line :data="fiveDayChartData"
+                     :settings="fiveDayChartSettings"></ve-line>
+            <ve-histogram :data="fiveDayChartDataHistogram"
+                          :settings="fiveDayChartSettingsHistogram"
+                          :legend-visible="false"></ve-histogram>
           </el-tab-pane>
-          <el-tab-pane label="日k" name="kDaily" lazy=true>
-            <ve-candle :data="kDailyChartData" :settings="kDailyChartSettings" :extend="extend"></ve-candle>
+          <el-tab-pane label="日k"
+                       name="kDaily"
+                       lazy=true>
+            <ve-candle :data="kDailyChartData"
+                       :settings="kDailyChartSettings"
+                       :extend="extend"></ve-candle>
           </el-tab-pane>
-          <el-tab-pane label="周k" name="kWeekly" lazy=true>
-            <ve-candle :data="kWeeklyChartData" :settings="kWeeklyChartSettings" :extend="extend"></ve-candle>
+          <el-tab-pane label="周k"
+                       name="kWeekly"
+                       lazy=true>
+            <ve-candle :data="kWeeklyChartData"
+                       :settings="kWeeklyChartSettings"
+                       :extend="extend"></ve-candle>
           </el-tab-pane>
-          <el-tab-pane label="月k" name="kMonthly" lazy=true>
-            <ve-candle :data="kMonthlyChartData" :settings="kMonthlyChartSettings"></ve-candle>
+          <el-tab-pane label="月k"
+                       name="kMonthly"
+                       lazy=true>
+            <ve-candle :data="kMonthlyChartData"
+                       :settings="kMonthlyChartSettings"></ve-candle>
           </el-tab-pane>
-          <el-tab-pane label="5分" name="fiveMinute" lazy=true>
-            <ve-candle :data="fiveMinuteChartData" :settings="fiveMinuteChartSettings"></ve-candle>
+          <el-tab-pane label="5分"
+                       name="fiveMinute"
+                       lazy=true>
+            <ve-candle :data="fiveMinuteChartData"
+                       :settings="fiveMinuteChartSettings"></ve-candle>
           </el-tab-pane>
-          <el-tab-pane label="15分" name="tenMinute" lazy=true>
-            <ve-candle :data="fifteenMinuteChartData" :settings="fifteenMinuteChartSettings"></ve-candle>
+          <el-tab-pane label="15分"
+                       name="tenMinute"
+                       lazy=true>
+            <ve-candle :data="fifteenMinuteChartData"
+                       :settings="fifteenMinuteChartSettings"></ve-candle>
           </el-tab-pane>
-          <el-tab-pane label="30分" name="thirtyMinute" lazy=true>
-            <ve-candle :data="thirtyMinuteChartData" :settings="thirtyMinuteChartSettings"></ve-candle>
+          <el-tab-pane label="30分"
+                       name="thirtyMinute"
+                       lazy=true>
+            <ve-candle :data="thirtyMinuteChartData"
+                       :settings="thirtyMinuteChartSettings"></ve-candle>
           </el-tab-pane>
-          <el-tab-pane label="60分" name="sixtyMinute" lazy=true>
-            <ve-candle :data="sixtyMinuteChartData" :settings="sixtyMinuteChartSettings"></ve-candle>
+          <el-tab-pane label="60分"
+                       name="sixtyMinute"
+                       lazy=true>
+            <ve-candle :data="sixtyMinuteChartData"
+                       :settings="sixtyMinuteChartSettings"></ve-candle>
           </el-tab-pane>
         </el-tabs>
-        </el-card>
-      </el-main>
-      <el-aside width="100px">
-      </el-aside>
-    </el-container>
+      </el-card>
+    </el-main>
+    <el-aside width="100px">
+    </el-aside>
   </el-container>
 </template>
 
@@ -488,5 +496,4 @@ export default {
 </script>
 
 <style scoped>
-
 </style>
