@@ -18,25 +18,28 @@ export default {
 
 <style>
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  word-break:break-all;
+  word-break: break-all;
   color: #2c3e50;
   width: 100%;
   height: auto;
 }
-body{
-  margin:0;
-  padding:0;
+body {
+  margin: 0;
+  padding: 0;
 }
-a:link{
-  text-decoration:none;
-  color:#409EFF;
+a:link {
+  text-decoration: none;
+  color: #409eff;
 }
-a:visited{
-  text-decoration:none;
-  color:#409EFF;
+a:visited {
+  text-decoration: none;
+  color: #409eff;
+}
+li {
+  list-style-type: none;
 }
 </style>

@@ -59,10 +59,9 @@ export default {
       step: 0,
       active: 1,
       scheme: {
-        // 假数据
-        stockRank: ['00586.SZ', '002243.SZ'],
-        plus_or_minus: [0, 0.44],
-        comsumption_ration: [1, 1]
+        stockRank: 0,
+        plus_or_minus: 0,
+        comsumption_ration: 0
       }
     }
   },
