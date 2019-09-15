@@ -9,9 +9,6 @@
     <el-card shadow="hover">
       <el-image :src="src3" style="width:100%;height:400px"></el-image>
     </el-card>
-    <el-card shadow="hover">
-      <el-image :src="src4" style="height:400px"></el-image>
-    </el-card>
   </div>
 </template>
 
@@ -22,14 +19,13 @@ export default {
     return {
       src1: require('../assets/mlc.png'),
       src2: require('../assets/cj.jpg'),
-      src3: require('../assets/phone.jpg'),
-      src4: require('../assets/back3.jpg')
+      src3: require('../assets/phone.jpg')
     }
   }
 }
 </script>
 <style scoped>
   .el-card {
-    margin-top: 25px;
+    margin-top: 5px;
   }
 </style>
