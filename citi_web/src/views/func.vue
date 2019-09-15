@@ -49,7 +49,7 @@
               <el-step title="完成选择"></el-step>
             </el-steps>
             <el-divider></el-divider>
-            <Scheme></Scheme>
+            <Scheme :scheme="scheme"></Scheme>
           </el-card>
         </el-col>
         <el-col :span="6">
@@ -69,7 +69,12 @@ export default {
   data () {
     return {
       step: 0,
-      active: 1
+      active: 1,
+      scheme: {
+        stockRank: ['00586.SZ', '002243.SZ'],
+        plus_or_minus: [0, 0.44],
+        comsumption_ration: [1, 1]
+      }
     }
   },
   components: {
@@ -85,6 +90,19 @@ export default {
     },
     nextStep () {
       this.step = this.step + 1
+    },
+    getScheme () {
+      let that = this
+      this.$axios({
+        method: 'get',
+        url: 'http://localhost:8080/getScheme/' + sessionStorage.getItem('id') // TODO 后端登陆成功后返回里加一个userId
+      }).then((res) => {
+        if (res.data.success) {
+          that.scheme = res.data.content
+        }
+      }).catch(function (error) {
+        alert(error)
+      })
     }
   },
   mounted () {

@@ -7,7 +7,7 @@
       @select="handleSelect"
       style="position: fixed;width: 100%;z-index: 100">
       <el-menu-item style="margin-left: 12%" index="1">
-        <el-image>
+        <el-image to="/introduction">
           <div slot="error" class="image-slot">
             <i class="el-icon-orange"></i>
           </div>
