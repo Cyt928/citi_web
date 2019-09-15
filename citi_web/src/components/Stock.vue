@@ -79,243 +79,279 @@
                @tab-click="handleClick">
         <el-tab-pane label="沪A"
                      name="first">
-          <el-card class="box-card"
-                   style="width:32%;display:inline-block">
-            <div>最热股票</div>
-            <span>
-              <el-divider></el-divider>
-            </span>
-            <el-table :data="tableData_sh_a_hot"
-                      style="display:inline-block"
-                      @cell-click="handle">
-              <el-table-column prop="name"
-                               label="股票名称"></el-table-column>
-              <el-table-column prop="price"
-                               label="当前价"></el-table-column>
-              <el-table-column prop="open"
-                               label="开盘价"></el-table-column>
-              <el-table-column prop="changePercent"
-                               label="涨跌幅(%)"></el-table-column>
-            </el-table>
-          </el-card>
-          <el-card class="box-card"
-                   style="width:32%;display:inline-block">
-            <div>成交量排行</div>
-            <span>
-              <el-divider></el-divider>
-            </span>
-            <el-table :data="tableData_sh_a_volume"
-                      style="display:inline-block"
-                      @cell-click="handle">
-              <el-table-column prop="name"
-                               label="股票名称"></el-table-column>
-              <el-table-column prop="price"
-                               label="当前价"></el-table-column>
-              <el-table-column prop="changePercent"
-                               label="涨跌幅(%)"></el-table-column>
-              <el-table-column prop="volume"
-                               label="成交量(手）"></el-table-column>
-            </el-table>
-          </el-card>
-          <el-card class="box-card"
-                   style="width:32%;display:inline-block">
-            <div>成交额排行</div>
-            <span>
-              <el-divider></el-divider>
-            </span>
-            <el-table :data="tableData_sh_a_amount"
-                      style="display:inline-block"
-                      @cell-click="handle">
-              <el-table-column prop="name"
-                               label="股票名称"></el-table-column>
-              <el-table-column prop="price"
-                               label="当前价"></el-table-column>
-              <el-table-column prop="changePercent"
-                               label="涨跌幅(%)"></el-table-column>
-              <el-table-column prop="monthGrowth"
-                               label="成交额(万元)"></el-table-column>
-            </el-table>
-          </el-card>
+          <el-row type="flex"
+                  justify="first">
+            <el-col :span="8">
+              <el-card class="box-card"
+                       style="display:inline-block">
+                <div>最热股票</div>
+                <span>
+                  <el-divider></el-divider>
+                </span>
+                <el-table :data="tableData_sh_a_hot"
+                          style="display:inline-block"
+                          @cell-click="handle">
+                  <el-table-column prop="name"
+                                   label="股票名称"></el-table-column>
+                  <el-table-column prop="price"
+                                   label="当前价"></el-table-column>
+                  <el-table-column prop="open"
+                                   label="开盘价"></el-table-column>
+                  <el-table-column prop="changePercent"
+                                   label="涨跌幅"></el-table-column>
+                </el-table>
+              </el-card>
+            </el-col>
+            <el-col :span="8">
+              <el-card class="box-card"
+                       style="display:inline-block">
+                <div>成交量排行</div>
+                <span>
+                  <el-divider></el-divider>
+                </span>
+                <el-table :data="tableData_sh_a_volume"
+                          style="display:inline-block"
+                          @cell-click="handle">
+                  <el-table-column prop="name"
+                                   label="股票名称"></el-table-column>
+                  <el-table-column prop="price"
+                                   label="当前价"></el-table-column>
+                  <el-table-column prop="changePercent"
+                                   label="涨跌幅"></el-table-column>
+                  <el-table-column prop="volume"
+                                   label="成交量"></el-table-column>
+                </el-table>
+              </el-card>
+            </el-col>
+            <el-col :span="8">
+              <el-card class="box-card"
+                       style="display:inline-block">
+                <div>成交额排行</div>
+                <span>
+                  <el-divider></el-divider>
+                </span>
+                <el-table :data="tableData_sh_a_amount"
+                          style="display:inline-block"
+                          @cell-click="handle">
+                  <el-table-column prop="name"
+                                   label="股票名称"></el-table-column>
+                  <el-table-column prop="price"
+                                   label="当前价"></el-table-column>
+                  <el-table-column prop="changePercent"
+                                   label="涨跌幅"></el-table-column>
+                  <el-table-column prop="monthGrowth"
+                                   label="成交额"></el-table-column>
+                </el-table>
+              </el-card>
+            </el-col>
+          </el-row>
         </el-tab-pane>
         <el-tab-pane label="沪B"
                      name="second">
-          <el-card class="box-card"
-                   style="width:32%;display:inline-block">
-            <div>最热股票</div>
-            <span>
-              <el-divider></el-divider>
-            </span>
-            <el-table :data="tableData_sh_a_hot"
-                      style="display:inline-block"
-                      @cell-click="handle">
-              <el-table-column prop="name"
-                               label="股票名称"></el-table-column>
-              <el-table-column prop="price"
-                               label="当前价"></el-table-column>
-              <el-table-column prop="open"
-                               label="开盘价"></el-table-column>
-              <el-table-column prop="changePercent"
-                               label="涨跌幅(%)"></el-table-column>
-            </el-table>
-          </el-card>
-          <el-card class="box-card"
-                   style="width:32%;display:inline-block">
-            <div>成交量排行</div>
-            <span>
-              <el-divider></el-divider>
-            </span>
-            <el-table :data="tableData_sh_b_volume"
-                      style="display:inline-block"
-                      @cell-click="handle">
-              <el-table-column prop="name"
-                               label="股票名称"></el-table-column>
-              <el-table-column prop="price"
-                               label="当前价"></el-table-column>
-              <el-table-column prop="changePercent"
-                               label="涨跌幅(%)"></el-table-column>
-              <el-table-column prop="volume"
-                               label="成交量(手）"></el-table-column>
-            </el-table>
-          </el-card>
-          <el-card class="box-card"
-                   style="width:32%;display:inline-block">
-            <div>成交额排行</div>
-            <span>
-              <el-divider></el-divider>
-            </span>
-            <el-table :data="tableData_sh_b_amount"
-                      style="display:inline-block"
-                      @cell-click="handle">
-              <el-table-column prop="name"
-                               label="股票名称"></el-table-column>
-              <el-table-column prop="price"
-                               label="当前价"></el-table-column>
-              <el-table-column prop="changePercent"
-                               label="涨跌幅(%)"></el-table-column>
-              <el-table-column prop="monthGrowth"
-                               label="成交额(万元)"></el-table-column>
-            </el-table>
-          </el-card>
+          <el-row type="flex"
+                  justify="first">
+            <el-col :span="8">
+              <el-card class="box-card"
+                       style="display:inline-block">
+                <div>最热股票</div>
+                <span>
+                  <el-divider></el-divider>
+                </span>
+                <el-table :data="tableData_sh_a_hot"
+                          style="display:inline-block"
+                          @cell-click="handle">
+                  <el-table-column prop="name"
+                                   label="股票名称"></el-table-column>
+                  <el-table-column prop="price"
+                                   label="当前价"></el-table-column>
+                  <el-table-column prop="open"
+                                   label="开盘价"></el-table-column>
+                  <el-table-column prop="changePercent"
+                                   label="涨跌幅"></el-table-column>
+                </el-table>
+              </el-card>
+            </el-col>
+            <el-col :span="8">
+              <el-card class="box-card"
+                       style="display:inline-block">
+                <div>成交量排行</div>
+                <span>
+                  <el-divider></el-divider>
+                </span>
+                <el-table :data="tableData_sh_b_volume"
+                          style="display:inline-block"
+                          @cell-click="handle">
+                  <el-table-column prop="name"
+                                   label="股票名称"></el-table-column>
+                  <el-table-column prop="price"
+                                   label="当前价"></el-table-column>
+                  <el-table-column prop="changePercent"
+                                   label="涨跌幅"></el-table-column>
+                  <el-table-column prop="volume"
+                                   label="成交量"></el-table-column>
+                </el-table>
+              </el-card>
+            </el-col>
+            <el-col :span="8">
+              <el-card class="box-card"
+                       style="display:inline-block">
+                <div>成交额排行</div>
+                <span>
+                  <el-divider></el-divider>
+                </span>
+                <el-table :data="tableData_sh_b_amount"
+                          style="display:inline-block"
+                          @cell-click="handle">
+                  <el-table-column prop="name"
+                                   label="股票名称"></el-table-column>
+                  <el-table-column prop="price"
+                                   label="当前价"></el-table-column>
+                  <el-table-column prop="changePercent"
+                                   label="涨跌幅"></el-table-column>
+                  <el-table-column prop="monthGrowth"
+                                   label="成交额"></el-table-column>
+                </el-table>
+              </el-card>
+            </el-col>
+          </el-row>
         </el-tab-pane>
         <el-tab-pane label="深A"
                      name="third">
-          <el-card class="box-card"
-                   style="width:32%;display:inline-block">
-            <div>最热股票</div>
-            <span>
-              <el-divider></el-divider>
-            </span>
-            <el-table :data="tableData_sh_a_hot"
-                      style="display:inline-block"
-                      @cell-click="handle">
-              <el-table-column prop="name"
-                               label="股票名称"></el-table-column>
-              <el-table-column prop="price"
-                               label="当前价"></el-table-column>
-              <el-table-column prop="open"
-                               label="开盘价"></el-table-column>
-              <el-table-column prop="changePercent"
-                               label="涨跌幅(%)"></el-table-column>
-            </el-table>
-          </el-card>
-          <el-card class="box-card"
-                   style="width:32%;display:inline-block">
-            <div>成交量排行</div>
-            <span>
-              <el-divider></el-divider>
-            </span>
-            <el-table :data="tableData_sz_a_volume"
-                      style="display:inline-block"
-                      @cell-click="handle">
-              <el-table-column prop="name"
-                               label="股票名称"></el-table-column>
-              <el-table-column prop="price"
-                               label="当前价"></el-table-column>
-              <el-table-column prop="changePercent"
-                               label="涨跌幅(%)"></el-table-column>
-              <el-table-column prop="volume"
-                               label="成交量(手）"></el-table-column>
-            </el-table>
-          </el-card>
-          <el-card class="box-card"
-                   style="width:32%;display:inline-block">
-            <div>成交额排行</div>
-            <span>
-              <el-divider></el-divider>
-            </span>
-            <el-table :data="tableData_sz_a_amount"
-                      style="display:inline-block"
-                      @cell-click="handle">
-              <el-table-column prop="name"
-                               label="股票名称"></el-table-column>
-              <el-table-column prop="price"
-                               label="当前价"></el-table-column>
-              <el-table-column prop="changePercent"
-                               label="涨跌幅(%)"></el-table-column>
-              <el-table-column prop="monthGrowth"
-                               label="成交额(万元)"></el-table-column>
-            </el-table>
-          </el-card>
+          <el-row type="flex"
+                  justify="first">
+            <el-col :span="8">
+              <el-card class="box-card"
+                       style="display:inline-block">
+                <div>最热股票</div>
+                <span>
+                  <el-divider></el-divider>
+                </span>
+                <el-table :data="tableData_sh_a_hot"
+                          style="display:inline-block"
+                          @cell-click="handle">
+                  <el-table-column prop="name"
+                                   label="股票名称"></el-table-column>
+                  <el-table-column prop="price"
+                                   label="当前价"></el-table-column>
+                  <el-table-column prop="open"
+                                   label="开盘价"></el-table-column>
+                  <el-table-column prop="changePercent"
+                                   label="涨跌幅"></el-table-column>
+                </el-table>
+              </el-card>
+            </el-col>
+            <el-col :span="8">
+              <el-card class="box-card"
+                       style="display:inline-block">
+                <div>成交量排行</div>
+                <span>
+                  <el-divider></el-divider>
+                </span>
+                <el-table :data="tableData_sz_a_volume"
+                          style="display:inline-block"
+                          @cell-click="handle">
+                  <el-table-column prop="name"
+                                   label="股票名称"></el-table-column>
+                  <el-table-column prop="price"
+                                   label="当前价"></el-table-column>
+                  <el-table-column prop="changePercent"
+                                   label="涨跌幅"></el-table-column>
+                  <el-table-column prop="volume"
+                                   label="成交量"></el-table-column>
+                </el-table>
+              </el-card>
+            </el-col>
+            <el-col :span="8">
+              <el-card class="box-card"
+                       style="display:inline-block">
+                <div>成交额排行</div>
+                <span>
+                  <el-divider></el-divider>
+                </span>
+                <el-table :data="tableData_sz_a_amount"
+                          style="display:inline-block"
+                          @cell-click="handle">
+                  <el-table-column prop="name"
+                                   label="股票名称"></el-table-column>
+                  <el-table-column prop="price"
+                                   label="当前价"></el-table-column>
+                  <el-table-column prop="changePercent"
+                                   label="涨跌幅"></el-table-column>
+                  <el-table-column prop="monthGrowth"
+                                   label="成交额"></el-table-column>
+                </el-table>
+              </el-card>
+            </el-col>
+          </el-row>
         </el-tab-pane>
         <el-tab-pane label="深B"
                      name="fourth">
-          <el-card class="box-card"
-                   style="width:32%;display:inline-block">
-            <div>最热股票</div>
-            <span>
-              <el-divider></el-divider>
-            </span>
-            <el-table :data="tableData_sh_a_hot"
-                      style="display:inline-block"
-                      @cell-click="handle">
-              <el-table-column prop="name"
-                               label="股票名称"></el-table-column>
-              <el-table-column prop="price"
-                               label="当前价"></el-table-column>
-              <el-table-column prop="open"
-                               label="开盘价"></el-table-column>
-              <el-table-column prop="changePercent"
-                               label="涨跌幅(%)"></el-table-column>
-            </el-table>
-          </el-card>
-          <el-card class="box-card"
-                   style="width:32%;display:inline-block">
-            <div>成交量排行</div>
-            <span>
-              <el-divider></el-divider>
-            </span>
-            <el-table :data="tableData_sz_b_volume"
-                      style="display:inline-block"
-                      @cell-click="handle">
-              <el-table-column prop="name"
-                               label="股票名称"></el-table-column>
-              <el-table-column prop="price"
-                               label="当前价"></el-table-column>
-              <el-table-column prop="changePercent"
-                               label="涨跌幅(%)"></el-table-column>
-              <el-table-column prop="volume"
-                               label="成交量(手）"></el-table-column>
-            </el-table>
-          </el-card>
-          <el-card class="box-card"
-                   style="width:32%;display:inline-block">
-            <div>成交额排行</div>
-            <span>
-              <el-divider></el-divider>
-            </span>
-            <el-table :data="tableData_sz_b_amount"
-                      style="display:inline-block"
-                      @cell-click="handle">
-              <el-table-column prop="name"
-                               label="股票名称"></el-table-column>
-              <el-table-column prop="price"
-                               label="当前价"></el-table-column>
-              <el-table-column prop="changePercent"
-                               label="涨跌幅(%)"></el-table-column>
-              <el-table-column prop="monthGrowth"
-                               label="成交额(万元)"></el-table-column>
-            </el-table>
-          </el-card>
+          <el-row type="flex"
+                  justify="first">
+            <el-col :span="8">
+              <el-card class="box-card"
+                       style="display:inline-block">
+                <div>最热股票</div>
+                <span>
+                  <el-divider></el-divider>
+                </span>
+                <el-table :data="tableData_sh_a_hot"
+                          style="display:inline-block"
+                          @cell-click="handle">
+                  <el-table-column prop="name"
+                                   label="股票名称"></el-table-column>
+                  <el-table-column prop="price"
+                                   label="当前价"></el-table-column>
+                  <el-table-column prop="open"
+                                   label="开盘价"></el-table-column>
+                  <el-table-column prop="changePercent"
+                                   label="涨跌幅"></el-table-column>
+                </el-table>
+              </el-card>
+            </el-col>
+            <el-col :span="8">
+              <el-card class="box-card"
+                       style="display:inline-block">
+                <div>成交量排行</div>
+                <span>
+                  <el-divider></el-divider>
+                </span>
+                <el-table :data="tableData_sz_b_volume"
+                          style="display:inline-block"
+                          @cell-click="handle">
+                  <el-table-column prop="name"
+                                   label="股票名称"></el-table-column>
+                  <el-table-column prop="price"
+                                   label="当前价"></el-table-column>
+                  <el-table-column prop="changePercent"
+                                   label="涨跌幅"></el-table-column>
+                  <el-table-column prop="volume"
+                                   label="成交量"></el-table-column>
+                </el-table>
+              </el-card>
+            </el-col>
+            <el-col :span="8">
+              <el-card class="box-card"
+                       style="display:inline-block">
+                <div>成交额排行</div>
+                <span>
+                  <el-divider></el-divider>
+                </span>
+                <el-table :data="tableData_sz_b_amount"
+                          style="display:inline-block"
+                          @cell-click="handle">
+                  <el-table-column prop="name"
+                                   label="股票名称"></el-table-column>
+                  <el-table-column prop="price"
+                                   label="当前价"></el-table-column>
+                  <el-table-column prop="changePercent"
+                                   label="涨跌幅"></el-table-column>
+                  <el-table-column prop="monthGrowth"
+                                   label="成交额"></el-table-column>
+                </el-table>
+              </el-card>
+            </el-col>
+          </el-row>
         </el-tab-pane>
       </el-tabs>
     </div>
@@ -453,7 +489,7 @@ export default {
         data.forEach(el => {
           let a = { name: '', price: '', changePercent: '', monthGrowth: '' }
           a.code = el.code
-          a.name = el.name
+          a.name = el.name.replace(/\s*/g, '')
           a.price = el.price
           a.changePercent = el.changePercent
           a.monthGrowth = el.amount
@@ -476,7 +512,7 @@ export default {
           let a = { name: '', price: '', changePercent: '', volume: '' }
           a.code = el.code
           a.volume = el.volume
-          a.name = el.name
+          a.name = el.name.replace(/\s*/g, '')
           a.price = el.price
           a.changePercent = el.changePercent
           vm.tableData_sh_a_volume.push(a)
@@ -497,7 +533,7 @@ export default {
         data.forEach(el => {
           let a = { name: '', price: '', changePercent: '', monthGrowth: '' }
           a.code = el.code
-          a.name = el.name
+          a.name = el.name.replace(/\s*/g, '')
           a.price = el.price
           a.changePercent = el.changePercent
           a.monthGrowth = el.amount
@@ -520,7 +556,7 @@ export default {
           let a = { name: '', price: '', changePercent: '', volume: '' }
           a.code = el.code
           a.volume = el.volume
-          a.name = el.name
+          a.name = el.name.replace(/\s*/g, '')
           a.price = el.price
           a.changePercent = el.changePercent
           vm.tableData_sh_b_volume.push(a)
@@ -541,7 +577,7 @@ export default {
         data.forEach(el => {
           let a = { name: '', price: '', changePercent: '', monthGrowth: '' }
           a.code = el.code
-          a.name = el.name
+          a.name = el.name.replace(/\s*/g, '')
           a.price = el.price
           a.changePercent = el.changePercent
           a.monthGrowth = el.amount
@@ -564,7 +600,7 @@ export default {
           let a = { name: '', price: '', changePercent: '', volume: '' }
           a.code = el.code
           a.volume = el.volume
-          a.name = el.name
+          a.name = el.name.replace(/\s*/g, '')
           a.price = el.price
           a.changePercent = el.changePercent
           vm.tableData_sz_a_volume.push(a)
@@ -585,7 +621,7 @@ export default {
         data.forEach(el => {
           let a = { name: '', price: '', changePercent: '', monthGrowth: '' }
           a.code = el.code
-          a.name = el.name
+          a.name = el.name.replace(/\s*/g, '')
           a.price = el.price
           a.changePercent = el.changePercent
           a.monthGrowth = el.amount
@@ -608,7 +644,7 @@ export default {
           let a = { name: '', price: '', changePercent: '', volume: '' }
           a.code = el.code
           a.volume = el.volume
-          a.name = el.name
+          a.name = el.name.replace(/\s*/g, '')
           a.price = el.price
           a.changePercent = el.changePercent
           vm.tableData_sz_b_volume.push(a)
@@ -627,7 +663,7 @@ export default {
           let a = { name: '', price: '', open: '', changePercent: '' }
           a.code = el.code
           a.open = el.open
-          a.name = el.name
+          a.name = el.name.replace(/\s*/g, '')
           a.changePercent = el.changePercent
           vm.tableData_sh_a_hot.push(a)
         })
