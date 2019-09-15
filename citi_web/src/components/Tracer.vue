@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div style = "height:800px;width:99%">
     <el-row :gutter="20" >
       <el-col :span="8" v-for="sch in schema" :key="sch.id">
         <el-card class="box-card" shadow="hover" >
@@ -14,7 +14,7 @@
               <time class="time">
                 {{sch.time1}} -
               </time>
-              <el-button type="text" class="button">查看股票详情</el-button>
+              <el-button type="text" class="button" @cell-click="go_stock">查看股票详情</el-button>
             </div>
           </div>
         </el-card>
@@ -205,6 +205,15 @@ export default {
         })
         this.chartData.columns = res.columns
         this.chartSetting.metrics = res.columns.splice(1, res.columns.length)
+      })
+    },
+    go_stock (index) {
+      this.$router.push({
+        name: 'CompositeIndex',
+        path: '/CompositeIndex',
+        params: {
+          value: index.code
+        }
       })
     }
   }
