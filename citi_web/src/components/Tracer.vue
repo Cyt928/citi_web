@@ -12,7 +12,7 @@
             </div>
             <div class="bottom clearfix" style="display: flex;flex-direction:row;align-items: flex-start">
               <time class="time">
-                {{sch.time1}} - {{sch.time2}}
+                {{sch.time1}} -
               </time>
               <el-button type="text" class="button">查看股票详情</el-button>
             </div>
@@ -64,7 +64,7 @@
       <el-card class="box-card2" shadow="hover" >
         <el-collapse v-model="activeName" accordion>
           <el-collapse-item title = "一周内方案收益折线图" name= "1">
-            <ve-line :data=chartData :settings=chartSetting width="750px" height="400px"></ve-line>
+            <ve-line :data=chartData :settings=chartSetting width="750px" height="400px" ></ve-line>
           </el-collapse-item>
           <el-collapse-item title = "总收益折线图" name = "2" >
             <ve-line :data=chartData1 :settings=chartSetting1 width="750px" height="400px"></ve-line>
@@ -92,28 +92,19 @@ export default {
       },
       schema: [
         {
-          code: 1,
           name: '余额宝',
           growthRate: 0.0478,
-          time1: '2018-9-10',
-          time2: '2019-9-10',
-          description: '中低风险，定期产品'
+          time1: '2018-9-10 '
         },
         {
-          code: 2,
           name: '支付宝',
           growthRate: 0.0478,
-          time1: '2018-9-10',
-          time2: '2019-9-10',
-          description: '中低风险，定期产品'
+          time1: '2018-9-10'
         },
         {
-          code: 3,
-          name: '傻逼宝',
+          name: 'xx宝',
           growthRate: 0.0478,
-          time1: '2018-9-10',
-          time2: '2019-9-10',
-          description: '中低风险，定期产品'
+          time1: '2222222'
         }
       ],
       chartData: {
@@ -125,27 +116,7 @@ export default {
           { '日期': '9.5', '余额宝': 20, '支付宝': 40, '傻逼宝': 10 },
           { '日期': '9.6', '余额宝': 40, '支付宝': 10, '傻逼宝': 50 },
           { '日期': '9.7', '余额宝': 30, '支付宝': 20, '傻逼宝': 20 },
-          { '日期': '9.8', '余额宝': 10, '支付宝': 20, '傻逼宝': 30 },
-          { '日期': '9.9', '余额宝': 30, '支付宝': 5, '傻逼宝': 10 },
-          { '日期': '9.10', '余额宝': 10, '支付宝': 20, '傻逼宝': 20 },
-          { '日期': '9.11', '余额宝': 70, '支付宝': 30, '傻逼宝': 20 },
-          { '日期': '9.12', '余额宝': 20, '支付宝': 40, '傻逼宝': 10 },
-          { '日期': '9.13', '余额宝': 50, '支付宝': 10, '傻逼宝': 50 },
-          { '日期': '9.14', '余额宝': 30, '支付宝': 20, '傻逼宝': 20 },
-          { '日期': '9.15', '余额宝': 10, '支付宝': 20, '傻逼宝': 30 },
-          { '日期': '9.16', '余额宝': 30, '支付宝': 5, '傻逼宝': 10 },
-          { '日期': '9.17', '余额宝': 10, '支付宝': 20, '傻逼宝': 20 },
-          { '日期': '9.18', '余额宝': 20, '支付宝': 30, '傻逼宝': 20 },
-          { '日期': '9.19', '余额宝': 20, '支付宝': 40, '傻逼宝': 10 },
-          { '日期': '9.20', '余额宝': 10, '支付宝': 10, '傻逼宝': 50 },
-          { '日期': '9.21', '余额宝': 30, '支付宝': 20, '傻逼宝': 20 },
-          { '日期': '9.22', '余额宝': 20, '支付宝': 20, '傻逼宝': 30 },
-          { '日期': '9.23', '余额宝': 30, '支付宝': 5, '傻逼宝': 10 },
-          { '日期': '9.24', '余额宝': 10, '支付宝': 20, '傻逼宝': 20 },
-          { '日期': '9.25', '余额宝': 30, '支付宝': 30, '傻逼宝': 20 },
-          { '日期': '9.26', '余额宝': 20, '支付宝': 40, '傻逼宝': 10 },
-          { '日期': '9.27', '余额宝': 50, '支付宝': 10, '傻逼宝': 50 },
-          { '日期': '9.28', '余额宝': 30, '支付宝': 20, '傻逼宝': 20 }]
+          { '日期': '9.8', '余额宝': 10, '支付宝': 20, '傻逼宝': 30 }]
       },
       chartSetting: {
         metrics: ['余额宝', '支付宝', '傻逼宝'],
@@ -196,18 +167,29 @@ export default {
     getSchema: function () {
       this.$http({
         method: 'get',
-        url: '/////////////////////'
+        url: '/trace/getTotal?' + 'userId=' + sessionStorage.getItem('id')
       }).then(re => {
         let res = JSON.parse(re)
-        this.schema = res
+        this.schema = res.schema
+        this.message.total = parseFloat(res.total)
+        this.message.totalInput = parseFloat(res.totalInput)
+        this.message.totalIncome = parseFloat(res.totalIncome)
+        this.message.totalRate = parseFloat(res.totalIncome) / parseFloat(res.totalInput)
+        this.message.days = parseInt((new Date().getTime() - new Date(this.schema[0].time1).getTime()) / 24 * 3600 * 1000)
       })
     },
     creatChart: function () {
       this.$http({
         method: 'get',
-        url: '/////////////////////////////////////////////'
+        url: '/trace/monthHistory?' + 'userId=' + sessionStorage.getItem('id')
       }).then(re => {
         let res = JSON.parse(re)
+        let todayT = 0
+        for (let i = 0; i < res.rows[res.rows.length - 1].list.length; i++) {
+          todayT = parseFloat(res.rows[res.rows.length - 1].list[i]) + todayT
+        }
+        this.message.todayIncome = todayT
+        this.message.todayRate = this.message.todayIncome / (this.message.total - this.message.todayIncome)
         let total = 0
         res.rows.forEach(function (item) {
           let row = {}
@@ -215,7 +197,7 @@ export default {
           row['日期'] = item.date
           row1['日期'] = item.date
           for (let i = 0; i < item.list.length; i++) {
-            row[res.columns[i]] = item.list[i]
+            row[res.columns[i]] = parseFloat(item.list[i])
             total = total + parseFloat(item.list[i])
           }
           row1['总收益'] = total
@@ -241,7 +223,7 @@ export default {
   }
 
   .button {
-    margin-left: 31%;
+    margin-left: 50%;
     font-size: 13px;
     padding: 0;
     float: right;
