@@ -30,6 +30,7 @@ export default {
 body{
   margin:0;
   padding:0;
+  background-color: rgb(246,246,246);
 }
 a:link{
   text-decoration:none;
