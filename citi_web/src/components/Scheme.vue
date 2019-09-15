@@ -84,11 +84,10 @@ export default {
       ]
     }
   },
-  mounted: function () {
+  created: function () {
     for (let j = 0; j < 10; j++) {
       this.stocks[j].code = this.scheme.stockRank[j]
     }
-    console.log(this.stocks)
   },
   methods: {
     purchase () {
@@ -96,14 +95,8 @@ export default {
         if (this.stocks[i].num !== 0) {
           let that = this
           this.$axios({
-            method: 'post',
-            url: 'http://localhost:8080/addPurchase',
-            data: {
-              code: that.stocks[i].code,
-              number: that.stocks[i].num,
-              startTime: new Date().getTime(),
-              userId: sessionStorage.getItem('id')
-            }
+            method: 'get',
+            url: 'http://localhost:8080/addPurchase/' + sessionStorage.getItem('id') + '/' + this.stocks[i].code.substring(7).toLowerCase() + this.stocks[i].code.substring(0, 6) + '/' + that.stocks[i].num
           }).then(res => {
             if (res.data.success) {
               this.$message({
