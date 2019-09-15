@@ -32,7 +32,7 @@ export default new Router({
         },
         {
           name: 'CompositeIndex',
-          path: '/CompositeIndex',
+          path: '/CompositeIndex/:value',
           component: () => import('@/views/CompositeIndex')
         }
       ]

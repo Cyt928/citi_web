@@ -252,7 +252,7 @@ export default {
         twentyseven: 0,
         twentyeight: 0,
         twentynine_province: '',
-        twentynine_city:'',
+        twentynine_city: '',
         thirty: 0
       }
     }
@@ -260,13 +260,11 @@ export default {
   name: 'Query',
   methods: {
     mounted () {
-      let timestamp = (new Date()).getTime();
-      queryForm.start=timestamp;
+      this.queryForm.start = (new Date()).getTime()
     },
     nextStep () {
-      let end = (new Date()).getTime();
-      queryForm.end = end;
-      queryForm.time = queryForm.end-queryForm.start;
+      this.queryForm.end = (new Date()).getTime()
+      this.queryForm.time = this.queryForm.end - this.queryForm.start
       // TODO 加判断是否为空
       if (!this.queryForm.one) {
         alert('请完成问卷')
