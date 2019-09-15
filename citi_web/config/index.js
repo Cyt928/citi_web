@@ -11,6 +11,13 @@ module.exports = {
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
     proxyTable: {
+      '/api':{
+        target:'https://api.doctorxiong.club/',
+        changeOrigin:true,
+        pathRewrite:{
+          '^/api':'/'
+        }
+      },
       '/xinlang':{
         target: 'http://hq.sinajs.cn',
         changeOrigin: true,

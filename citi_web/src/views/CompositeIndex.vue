@@ -1,5 +1,29 @@
 <template>
   <el-container>
+    <el-header style="margin: 0;padding: 0">
+      <el-menu
+        :default-active="activeIndex"
+        mode="horizontal"
+        style="position: fixed;width: 100%">
+        <el-menu-item style="margin-left: 12%" index="1">
+          <router-link tag="el-menu-item" to="/">
+            <el-image>
+              <div slot="error" class="image-slot">
+                <i class="el-icon-picture-outline"></i>
+              </div>
+            </el-image>
+          </router-link>
+        </el-menu-item>
+        <el-menu-item index="2">
+          <template slot="title"><router-link tag="el-menu-item" to="/market">行情展示</router-link></template>
+        </el-menu-item>
+        <el-menu-item index="3">我的历史</el-menu-item>
+        <el-menu-item index="4">方案跟踪</el-menu-item>
+        <div style="float: right;margin-right: 15%">
+          <el-menu-item><template slot="title"><el-avatar></el-avatar></template></el-menu-item>
+        </div>
+      </el-menu>
+    </el-header>
     <el-container>
       <el-aside width="100px">
       </el-aside>
@@ -10,24 +34,20 @@
           <el-col>
             <span style="font-weight: bolder">{{indexNumber.now}}</span> {{indexNumber.change}} {{(indexNumber.change/indexNumber.lastClose*100).toFixed(2)}}%
           </el-col>
-          </el-row>
-          <el-row style="display: flex;justify-content: center;padding-left: 12%">
-          <el-col :span="8" style="display: flex;flex-direction: column;align-items: flex-start">
-            <div>最高：{{indexNumber.high}}</div>
-            <div>最低：{{indexNumber.low}}</div>
-            <div>振幅：{{(((indexNumber.high-indexNumber.low)/indexNumber.now)*100).toFixed(2)}}%</div>
-          </el-col>
-          <el-col :span="8" style="display: flex;flex-direction: column;align-items: flex-start">
-            <div>今开：{{indexNumber.open}}</div>
-            <div>昨收：{{indexNumber.lastClose}}</div>
-          </el-col>
-          <el-col :span="8" style="display: flex;flex-direction: column;align-items: flex-start">
-            <div>成交量：{{indexNumber.total}}亿手</div>
-            <div>成交额：{{indexNumber.totalAmount.toFixed(2)}}亿</div>
-          </el-col>
-          </el-row>
-          <el-divider></el-divider>
-          <el-tabs v-model="activeName">
+        </el-row>
+        <el-row :gutter="20">
+          <el-col :span="8">最高：{{indexNumber.high}}</el-col>
+          <el-col :span="8">今开：{{indexNumber.open}}</el-col>
+          <el-col :span="8">成交量：{{indexNumber.total}}</el-col>
+        </el-row>
+        <el-row :gutter="20">
+          <el-col :span="8">最低：{{indexNumber.low}}</el-col>
+          <el-col :span="8">昨收：{{indexNumber.lastClose}}</el-col>
+          <el-col :span="8">成交额：{{indexNumber.totalAmount.toFixed(2)}}亿</el-col>
+          <el-col :span="8">振幅：{{(((indexNumber.high-indexNumber.low)/indexNumber.now)*100).toFixed(2)}}%</el-col>
+        </el-row>
+        <el-divider></el-divider>
+        <el-tabs v-model="activeName">
           <el-tab-pane label="分时" name="minute" lazy=true>
             <ve-line :data="minuteChartData" :settings="minuteChartSettings" :legend-visible="false"></ve-line>
             <ve-histogram :data="minuteChartDataHistogram" :settings="minuteChartSettingsHistogram" :legend-visible="false"></ve-histogram>
@@ -45,7 +65,6 @@
           <el-tab-pane label="月k" name="kMonthly" lazy=true>
             <ve-candle :data="kMonthlyChartData" :settings="kMonthlyChartSettings"></ve-candle>
           </el-tab-pane>
-          <el-tab-pane label="年k" name="kYearly" lazy=true></el-tab-pane>
           <el-tab-pane label="5分" name="fiveMinute" lazy=true>
             <ve-candle :data="fiveMinuteChartData" :settings="fiveMinuteChartSettings"></ve-candle>
           </el-tab-pane>
@@ -155,6 +174,7 @@ export default {
       'xAxis.0.axisLabel.rotate': 45
     }
     return {
+      input1: '',
       activeIndex: '2',
       activeName: 'minute',
       indexNumber: {
@@ -167,7 +187,7 @@ export default {
         low: 0,
         lastClose: 0,
         change: 0,
-        total: 0,
+        total: '',
         totalAmount: 0
       },
       minuteChartData: {
@@ -241,17 +261,39 @@ export default {
   methods: {
     getIndexNumber () {
       let index = this.$route.params
+      let vm = this
       this.indexNumber.value = index.value
-      this.indexNumber.name = index.name
-      this.indexNumber.now = index.now
-      this.indexNumber.open = index.open
-      this.indexNumber.close = index.close
-      this.indexNumber.high = index.high
-      this.indexNumber.low = index.low
-      this.indexNumber.lastClose = index.lastClose
-      this.indexNumber.change = index.change
-      this.indexNumber.total = index.total
-      this.indexNumber.totalAmount = index.totalAmount
+      this.$http({
+        method: 'get',
+        url: '/xinlang/list=' + vm.indexNumber.value,
+        headers: {
+          'Content-Type': 'application/javascript',
+          'Access-Control-Allow-Origin': '*'
+        }
+      }).then(res => {
+        let a = JSON.stringify(res.data).split(',')
+        for (let i = 1; i < 6; i++) {
+          a[i] = parseFloat(a[i]).toFixed(2)
+        }
+        vm.indexNumber.name = a[0].slice(a[0].indexOf('=') + 3, a[0].length)
+        vm.indexNumber.open = a[1]
+        vm.indexNumber.lastClose = a[2]
+        vm.indexNumber.now = a[3]
+        vm.indexNumber.high = a[4]
+        vm.indexNumber.low = a[5]
+        vm.indexNumber.change = (vm.indexNumber.now - vm.indexNumber.lastClose).toFixed(2)
+        if (vm.indexNumber.value === 'sh000001') {
+          vm.indexNumber.total = (a[8] / 100000000).toFixed(2) + '亿手'
+        } else if (vm.indexNumber.value === 'sz399001' || vm.indexNumber.value === 'sz399006') {
+          vm.indexNumber.total = (a[8] / 10000000000).toFixed(2) + '亿手'
+        } else {
+          vm.indexNumber.total = (a[8] / 1000000).toFixed(2) + '万手'
+        }
+        vm.indexNumber.totalAmount = a[9] / 100000000
+      })
+        .catch(error => {
+          console.log(error)
+        })
     },
     getMinuteChart: function () {
       this.$http({
@@ -333,11 +375,12 @@ export default {
     getKDailyChart: function () {
       let vm = this
       let allRequests = []
+      // 先获取发行年份
       this.$http({
         method: 'get',
         url: '/tengxun/flashdata/hushen/latest/weekly/' + vm.indexNumber.value + '.js'
       }).then(res => {
-        let startYear = res.data.split('\\n\\')[1].split('start:')[1].slice(0, 2)
+        let startYear = parseInt(res.data.split('\\n\\')[1].split('start:')[1].slice(0, 2))
         if (startYear < 90) {
           startYear += 100
         }
