@@ -19,9 +19,9 @@
               </div>
               <div>
                 <div>
-                  <span class="close">{{num.now}}</span>
-                  <span class="change">{{num.change}}</span>
-                  <span class="change">{{(num.change / num.lastClose * 100).toFixed(2)}}%</span>
+                  <span class="close">当前：{{num.now}}</span>
+                  <span class="change">涨/跌：{{num.change}}</span>
+                  <span class="change">涨跌幅：{{(num.change / num.lastClose * 100).toFixed(2)}}%</span>
                 </div>
                 <div>
                   <span>成交量：{{num.totalAmount.toFixed(2)}}亿</span>
@@ -80,10 +80,10 @@
         <el-tab-pane label="沪A"
                      name="first">
           <el-row type="flex"
-                  justify="first">
+                  justify="space-around">
             <el-col :span="8">
               <el-card class="box-card"
-                       style="display:inline-block">
+                       style="display:inline-block;width:90%">
                 <div>最热股票</div>
                 <span>
                   <el-divider></el-divider>
@@ -149,7 +149,7 @@
         <el-tab-pane label="沪B"
                      name="second">
           <el-row type="flex"
-                  justify="first">
+                  justify="space-around">
             <el-col :span="8">
               <el-card class="box-card"
                        style="display:inline-block">
@@ -218,7 +218,7 @@
         <el-tab-pane label="深A"
                      name="third">
           <el-row type="flex"
-                  justify="first">
+                  justify="space-around">
             <el-col :span="8">
               <el-card class="box-card"
                        style="display:inline-block">
@@ -287,7 +287,7 @@
         <el-tab-pane label="深B"
                      name="fourth">
           <el-row type="flex"
-                  justify="first">
+                  justify="space-around">
             <el-col :span="8">
               <el-card class="box-card"
                        style="display:inline-block">
@@ -767,4 +767,8 @@ export default {
 .el-select .el-input {
   width: 130px;
 }
+  .box-card {
+    width:90%;
+    display:inline-block;
+  }
 </style>

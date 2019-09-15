@@ -7,7 +7,7 @@
         <h3>{{indexNumber.name}}({{indexNumber.value}})</h3>
         <el-row>
           <el-col>
-            <span style="font-weight: bolder">{{indexNumber.now}}</span> {{indexNumber.change}} {{(indexNumber.change/indexNumber.lastClose*100).toFixed(2)}}%
+            <span style="font-weight: bolder">当前：{{indexNumber.now}}</span>   涨/跌：{{indexNumber.change}}   涨跌幅：{{(indexNumber.change/indexNumber.lastClose*100).toFixed(2)}}%
           </el-col>
         </el-row>
         <el-row :gutter="20">
