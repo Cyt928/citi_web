@@ -7,7 +7,7 @@
         <el-menu-item style="margin-left: 12%"
                       index="1">
           <router-link tag="el-menu-item"
-                       to="/introduction">
+                       to="/home">
             <el-image>
               <div slot="error"
                    class="image-slot">

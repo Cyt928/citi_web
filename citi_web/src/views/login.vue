@@ -1,30 +1,50 @@
 <template>
   <div>
     <div class="video-container">
-      <video :style="fixStyle" muted autoplay="autoplay"  loop v-on:canplay="canplay">
-        <source src="../assets/RainBackground.webm" type="video/webm"/>
+      <video :style="fixStyle"
+             muted
+             autoplay="autoplay"
+             loop
+             v-on:canplay="canplay">
+        <source src="../assets/RainBackground.webm"
+                type="video/webm" />
         浏览器不支持 video 标签，建议升级浏览器。
       </video>
     </div>
-    <el-card style="opacity: 0.9" shadow="hover" class="card-container">
+    <el-card style="opacity: 0.9"
+             shadow="hover"
+             class="card-container">
       <h3 style="margin-bottom: 20px">登陆系统</h3>
       <el-divider></el-divider>
       <div style="display: flex; flex-direction: column;justify-content: flex-start">
-        <el-form style="padding: 16px;margin: 16px" status-icon label-width="80px" label-position="left" :model="loginForm" ref="loginForm">
-        <el-form-item label="用户名:" :rules="[
+        <el-form style="padding: 16px;margin: 16px"
+                 status-icon
+                 label-width="80px"
+                 label-position="left"
+                 :model="loginForm"
+                 ref="loginForm">
+          <el-form-item label="用户名:"
+                        :rules="[
       { required: true, message: '请输入用户名', trigger: 'blur' }
-    ]" prop="username">
-          <el-input  v-model="loginForm.username" autocomplete="off"></el-input>
-        </el-form-item>
-        <br />
-        <el-form-item label="密码:" :rules="[
+    ]"
+                        prop="username">
+            <el-input v-model="loginForm.username"
+                      autocomplete="off"></el-input>
+          </el-form-item>
+          <br />
+          <el-form-item label="密码:"
+                        :rules="[
       { required: true, message: '请输入密码', trigger: 'blur' }
-    ]" prop="password">
-          <el-input type="password"  v-model="loginForm.password" autocomplete="off"></el-input>
-        </el-form-item>
-        <br />
-          <el-button type="primary" @click="submitLoginForm">登陆</el-button>
-      </el-form>
+    ]"
+                        prop="password">
+            <el-input type="password"
+                      v-model="loginForm.password"
+                      autocomplete="off"></el-input>
+          </el-form-item>
+          <br />
+          <el-button type="primary"
+                     @click="submitLoginForm">登陆</el-button>
+        </el-form>
         <p>
           没有账号?&nbsp;
           <router-link to="register">点击注册</router-link>
@@ -71,7 +91,7 @@ export default {
             // TODO 存id
             sessionStorage.setItem('id', res.data.content.id)
             sessionStorage.setItem('username', that.loginForm.username)
-            that.$router.push('/introduction')
+            that.$router.push('/home')
             sessionStorage.setItem('loginStatus', '1')
           } else {
             alert(res.data.message)
@@ -110,18 +130,18 @@ export default {
 }
 </script>
 <style scoped>
-  .video-container {
-    z-index: 0;
-    position:  fixed;
-    overflow: hidden;
-  }
-  .card-container {
-    position: fixed;
-    left: 0;
-    right: 0;
-    margin:160px auto;
-    width:480px;
-    height: 480px;
-    z-index: 1;
-  }
+.video-container {
+  z-index: 0;
+  position: fixed;
+  overflow: hidden;
+}
+.card-container {
+  position: fixed;
+  left: 0;
+  right: 0;
+  margin: 160px auto;
+  width: 480px;
+  height: 480px;
+  z-index: 1;
+}
 </style>

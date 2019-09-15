@@ -9,11 +9,11 @@ export default new Router({
       path: '/',
       name: 'index',
       component: () => import('@/views/index'),
-      redirect: '/introduction',
+      redirect: '/home',
       children: [
         {
-          path: '/introduction',
-          component: () => import('@/views/introduction')
+          path: '/home',
+          component: () => import('@/views/home')
         },
         {
           name: 'market',
