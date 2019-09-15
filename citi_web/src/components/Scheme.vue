@@ -10,7 +10,7 @@
         <p>股票推荐</p>
         <p>请勾选预计购买的股票并输入<b>预计购买股数</b>(如无意愿购入,<b>请输入0</b>)</p>
         <ul class="stockCode">
-          <li v-for="item in stocks"
+          <li v-for="item in computedStocks"
               v-bind:key="item"
               :label="item">
             <p type="primary">{{item.code}}<el-input v-model="item.num"
@@ -84,10 +84,23 @@ export default {
       ]
     }
   },
+  computed: {
+    computedStocks () {
+      let stocks = []
+      for (let j = 0; j < 10; j++) {
+        stocks.push({code: this.scheme.stockRank[j], num: 0})
+      }
+      return stocks
+    }
+  },
   created: function () {
     for (let j = 0; j < 10; j++) {
       this.stocks[j].code = this.scheme.stockRank[j]
     }
+    this.stocks.sort()
+  },
+  mounted: function () {
+    this.stocks.sort()
   },
   methods: {
     purchase () {
