@@ -49,7 +49,6 @@
       <!-- 设置router，放入不同功能页面-->
       <router-view></router-view>
     </el-main>
-    <el-footer style="margin-top: auto">Nju</el-footer>
   </el-container>
 </template>
 

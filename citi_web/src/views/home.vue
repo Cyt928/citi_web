@@ -1,20 +1,35 @@
 <template>
-  <div style="background: #000000;height: 300px">
-    <span class="demonstration">项目介绍</span>
-    <el-carousel height="250px">
-      <el-carousel-item v-for="item in 4"
-                        :key="item">
-        <h3 class="small">{{ item }}</h3>
-      </el-carousel-item>
-    </el-carousel>
+  <div style="background: rgb(246,246,246);height: 100%">
+    <el-card shadow="hover" style="background-color: #000000">
+      <el-image :src="src1"></el-image>
+    </el-card>
+    <el-card shadow="hover" style="float:left;width:50%">
+      <el-image :src="src2" style="width:100%;height:400px"></el-image>
+    </el-card>
+    <el-card shadow="hover">
+      <el-image :src="src3" style="width:100%;height:400px"></el-image>
+    </el-card>
+    <el-card shadow="hover">
+      <el-image :src="src4" style="height:400px"></el-image>
+    </el-card>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'home'
+  name: 'home',
+  data () {
+    return {
+      src1: require('../assets/mlc.png'),
+      src2: require('../assets/cj.jpg'),
+      src3: require('../assets/phone.jpg'),
+      src4: require('../assets/back3.jpg')
+    }
+  }
 }
 </script>
-
 <style scoped>
+  .el-card {
+    margin-top: 25px;
+  }
 </style>
