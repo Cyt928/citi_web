@@ -21,6 +21,7 @@
 
 <script>
 export default {
+  // TODO 消费结构展示
   name: 'Scheme',
   props: ['scheme'],
   data () {

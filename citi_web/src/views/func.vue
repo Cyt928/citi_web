@@ -71,6 +71,7 @@ export default {
       step: 0,
       active: 1,
       scheme: {
+        // 假数据
         stockRank: ['00586.SZ', '002243.SZ'],
         plus_or_minus: [0, 0.44],
         comsumption_ration: [1, 1]
@@ -87,9 +88,11 @@ export default {
     },
     goToStep2 () {
       this.step = 2
+      this.getScheme()
     },
     nextStep () {
       this.step = this.step + 1
+      this.getScheme()
     },
     getScheme () {
       let that = this
