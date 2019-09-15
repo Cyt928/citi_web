@@ -339,7 +339,8 @@ export default {
       activeName1: '1',
       activeName2: 'first',
       hushenIndexNumber: [
-        {          value: 'sh000001',
+        {
+          value: 'sh000001',
           name: '上证指数',
           now: 0,
           open: 0,
