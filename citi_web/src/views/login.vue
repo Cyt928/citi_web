@@ -16,11 +16,13 @@
     ]" prop="username">
           <el-input  v-model="loginForm.username" autocomplete="off"></el-input>
         </el-form-item>
+        <br />
         <el-form-item label="密码:" :rules="[
       { required: true, message: '请输入密码', trigger: 'blur' }
     ]" prop="password">
           <el-input type="password"  v-model="loginForm.password" autocomplete="off"></el-input>
         </el-form-item>
+        <br />
           <el-button type="primary" @click="submitLoginForm">登陆</el-button>
       </el-form>
         <p>
@@ -72,7 +74,7 @@ export default {
             that.$router.push('/introduction')
             sessionStorage.setItem('loginStatus', '1')
           } else {
-            alert(res.data.content)
+            alert(res.data.message)
           }
         }).catch(function (error) {
           alert(error)

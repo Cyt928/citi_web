@@ -6,7 +6,6 @@
         <el-tabs v-model="activeName" :tab-position='tabPosition'>
           <el-tab-pane label="股票" name="Stock"><Stock></Stock></el-tab-pane>
           <el-tab-pane label="基金" name="Fund"><Fund></Fund></el-tab-pane>
-          <el-tab-pane label="债券" name="Bond"><Bond></Bond></el-tab-pane>
         </el-tabs>
         </el-card>
       </el-main>
@@ -17,7 +16,6 @@
 <script>
 import Stock from '../components/Stock'
 import Fund from '../components/Fund'
-import Bond from '../components/Bond'
 export default {
   name: 'market',
   data () {
@@ -34,8 +32,7 @@ export default {
   },
   components: {
     Stock,
-    Fund,
-    Bond
+    Fund
   }
 }
 </script>

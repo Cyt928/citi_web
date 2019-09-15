@@ -1,40 +1,84 @@
 <template>
   <div>
     <div class="video-container">
-      <video :style="fixStyle" muted autoplay="autoplay"  loop v-on:canplay="canplay">
-        <source src="../assets/RainBackground.webm" type="video/webm"/>
+      <video :style="fixStyle"
+             muted
+             autoplay="autoplay"
+             loop
+             v-on:canplay="canplay">
+        <source src="../assets/RainBackground.webm"
+                type="video/webm" />
         浏览器不支持 video 标签，建议升级浏览器。
       </video>
     </div>
-    <el-card style="opacity: 0.9" shadow="hover" class="card-container">
+    <el-card style="opacity: 0.9"
+             shadow="hover"
+             class="card-container">
       <h3 style="margin-bottom: 20px">填写注册信息</h3>
       <el-divider></el-divider>
       <div>
-        <el-form :model="registerForm" ref="registerForm" label-width="120px" style="margin: 12px;width: 480px" label-position="right">
-          <el-form-item prop="email" label="邮箱" :rules="[
+        <el-form :model="registerForm"
+                 ref="registerForm"
+                 label-width="120px"
+                 style="margin: 12px;width: 480px"
+                 label-position="right">
+          <el-form-item prop="email"
+                        label="邮箱"
+                        :rules="[
       { required: true, message: '请输入邮箱地址', trigger: 'blur' },
       { type: 'email', message: '请输入正确的邮箱地址', trigger: ['blur', 'change'] }
     ]">
-            <el-input style="width:280px;float: left" v-model="registerForm.email"></el-input>
-            <el-button type="primary" :disabled="sendButtonDisabled" @click="sendCode">{{sendButtonText}}</el-button>
+            <el-input style="width:280px;float: left"
+                      v-model="registerForm.email"></el-input>
+            <el-button type="primary"
+                       :disabled="sendButtonDisabled"
+                       @click="sendCode">{{sendButtonText}}</el-button>
           </el-form-item>
-          <el-form-item prop="code" label="验证码" :rules="[
+          <br />
+          <el-form-item prop="code"
+                        label="验证码"
+                        :rules="[
       { required: true, message: '请输入验证码', trigger: 'blur' }
-    ]"> <el-input style="width:280px;float: left" v-model="checkCode"></el-input>
+    ]">
+            <el-input style="width:280px;float: left"
+                      v-model="checkCode"></el-input>
           </el-form-item>
-          <el-form-item prop="username" label="用户名" :rules="[
+          <br />
+          <el-form-item prop="username"
+                        label="用户名"
+                        :rules="[
       { required: true, message: '请输入用户名', trigger: 'blur' }
-    ]"> <el-input style="width:280px;float: left" v-model="registerForm.username"></el-input>
-        </el-form-item>
-          <el-form-item prop="password" label="密码" :rules="[
+    ]">
+            <el-input style="width:280px;float: left"
+                      v-model="registerForm.username"></el-input>
+          </el-form-item>
+          <br />
+          <el-form-item prop="password"
+                        label="密码"
+                        :rules="[
       { required: true, message: '请输入密码', trigger: 'blur' }
-    ]"> <el-input style="width:280px;float: left" v-model="registerForm.password" type="password"></el-input>
+    ]">
+            <el-input style="width:280px;float: left"
+                      v-model="registerForm.password"
+                      type="password"></el-input>
           </el-form-item>
-          <el-form-item prop="checkPassword"  label="确认密码" :rules="rulePass">
-            <el-input style="width:280px;float: left" type="password" v-model="registerForm.checkPassword" auto-complete="off"></el-input>
+          <br />
+          <el-form-item prop="checkPassword"
+                        label="确认密码"
+                        :rules="rulePass">
+            <el-input style="width:280px;float: left"
+                      type="password"
+                      v-model="registerForm.checkPassword"
+                      auto-complete="off"></el-input>
           </el-form-item>
+          <br />
+          <el-button type="primary"
+                     @click="compareCode()">提交</el-button>
         </el-form>
-        <el-button type="primary" @click="compareCode()">提交</el-button>
+        <p style="margin-top:20ox;">
+          已有账号?&nbsp;
+          <router-link to="login">直接登陆</router-link>
+        </p>
       </div>
     </el-card>
   </div>
@@ -68,7 +112,7 @@ export default {
       },
       checkCode: '',
       rulePass: [
-        {validator: checkPass, trigger: 'blur'}
+        { validator: checkPass, trigger: 'blur' }
       ]
     }
   },
@@ -172,18 +216,18 @@ export default {
 }
 </script>
 <style scoped>
-  .video-container {
-    z-index: 0;
-    position:  fixed;
-    overflow: hidden;
-  }
-  .card-container {
-    position: fixed;
-    left: 0;
-    right: 0;
-    margin:48px auto;
-    width:600px;
-    height: 600px;
-    z-index: 1;
-  }
+.video-container {
+  z-index: 0;
+  position: fixed;
+  overflow: hidden;
+}
+.card-container {
+  position: fixed;
+  left: 0;
+  right: 0;
+  margin: 48px auto;
+  width: 600px;
+  height: 650px;
+  z-index: 1;
+}
 </style>

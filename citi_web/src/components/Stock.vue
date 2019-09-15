@@ -4,10 +4,11 @@
       <el-row :gutter="20">
         <el-col :span="8" v-for="num in hushenIndexNumber" :key="num.value">
           <el-card class="box-card" shadow="hover">
-              <div slot="header" class="clearfix" @click="go(num)">
+              <div slot="header" class="clearfix">
                 <span>{{num.name}}</span>
+                <el-button style="float: right; padding: 3px 0" type="text" @click="go(num)">查看详情</el-button>
               </div>
-              <div  @click="go(num)">
+              <div>
                 <div>
                   <span class="close">{{num.now}}</span>
                   <span class="change">{{num.change}}</span>
@@ -242,5 +243,7 @@ export default {
 </script>
 
 <style scoped>
-
+.clearfix {
+  text-align: left;
+}
 </style>

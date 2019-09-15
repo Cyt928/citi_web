@@ -1,16 +1,20 @@
 <template>
     <el-container>
-      <el-row v-if="step===0" style="width: 100%">
-        <el-col :span="12">
-          <el-card shadow="hover" style="height: 300px;width: 300px;float: right;margin-right: 12px;margin-top: 100px">
+      <el-row v-if="step===0" style="width:100%;" type="flex" justify="space-around">
+        <el-col :span="10">
+          <el-card shadow="hover" style="height: 500px;width: 400px;float: right;margin-right: 12px;margin-top: 50px">
             <p>根据以往参数获取投资消费建议</p>
-            <el-button @click="goToStep2">开始</el-button>
+            <i class="el-icon-user-solid" style="font-size:200px;margin-top:60px;color:#409EFF;"></i>
+            <br />
+            <el-button @click="goToStep2" style="margin-top:80px;">开始</el-button>
           </el-card>
         </el-col>
-        <el-col :span="12">
-          <el-card @click="goToStep1" shadow="hover" style="height: 300px;width: 300px;margin-left: 12px;margin-top: 100px">
+        <el-col :span="10">
+          <el-card @click="goToStep1" shadow="hover" style="height: 500px;width: 400px;margin-left: 12px;margin-top: 50px">
             <p>填写问卷计算分析投资消费建议</p>
-            <el-button @click="goToStep1">开始</el-button>
+            <i class="el-icon-edit" style="font-size:200px;margin-top:60px;color:#409EFF;"></i>
+            <br />
+            <el-button @click="goToStep1" style="margin-top:80px;">开始</el-button>
           </el-card>
         </el-col>
       </el-row>

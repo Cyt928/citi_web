@@ -30,4 +30,12 @@ body{
   margin:0;
   padding:0;
 }
+a:link{
+  text-decoration:none;
+  color:#409EFF;
+}
+a:visited{
+  text-decoration:none;
+  color:#409EFF;
+}
 </style>

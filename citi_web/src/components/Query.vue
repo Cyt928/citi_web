@@ -218,7 +218,7 @@ export default {
         let that = this
         this.$axios({
           method: 'post',
-          url: 'http://localhost:8080/addQustionNaire',
+          url: 'http://localhost:8080/addQuestionNaire',
           data: that.queryForm
         }).then((res) => {
           console.log(res.data)
