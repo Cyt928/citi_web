@@ -12,7 +12,7 @@ import VCharts from 'v-charts'
 
 Vue.use(ElementUI)
 Vue.use(VueRouter)
-Vue.use(axios, VueAxios)
+Vue.use(VueAxios)
 Vue.use(VCharts)
 Vue.config.productionTip = false
 Vue.prototype.$axios = axios
