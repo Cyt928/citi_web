@@ -85,7 +85,7 @@ export default {
       let that = this
       this.$axios({
         method: 'get',
-        url: 'http://localhost:8080/getScheme/' + sessionStorage.getItem('id')
+        url: 'http://47.96.233.229:8080/getScheme/' + sessionStorage.getItem('id')
       }).then((res) => {
         if (res.data.success) {
           that.scheme = res.data.content

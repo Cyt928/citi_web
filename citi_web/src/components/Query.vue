@@ -320,7 +320,7 @@ export default {
         let that = this
         this.$axios({
           method: 'post',
-          url: 'http://localhost:8080/addQuestionNaire',
+          url: 'http://47.96.233.229:8080/addQuestionNaire',
           data: that.queryForm
         }).then((res) => {
           console.log(res.data)

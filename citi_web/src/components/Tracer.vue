@@ -114,7 +114,7 @@ export default {
       let that = this
       that.$axios({
         method: 'get',
-        url: 'http://localhost:8080/getTotal/' + sessionStorage.getItem('id')
+        url: 'http://47.96.233.229:8080/getTotal/' + sessionStorage.getItem('id')
       }).then((res) => {
         that.schema = res.data.content.scheme
         for (let i = 0; i < that.schema.length; i++) {
@@ -145,7 +145,7 @@ export default {
       let that = this
       that.$axios({
         method: 'get',
-        url: 'http://localhost:8080/monthHistory/' + sessionStorage.getItem('id')
+        url: 'http://47.96.233.229:8080/monthHistory/' + sessionStorage.getItem('id')
       }).then((res) => {
         let todayT = 0
         for (let i = 0; i < res.data.content.rows[res.data.content.rows.length - 1].benefits.length; i++) {

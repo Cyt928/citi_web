@@ -135,7 +135,7 @@ export default {
       }, 1000)
       this.$axios({
         method: 'get',
-        url: 'http://localhost:8080/SendVerfCode?email=' + this.registerForm.email
+        url: 'http://47.96.233.229:8080/SendVerfCode?email=' + this.registerForm.email
       }).then((res) => {
       }).catch(function (error) {
         alert(error)
@@ -148,7 +148,7 @@ export default {
         let that = this
         this.$axios({
           method: 'post',
-          url: 'http://localhost:8080/CompareVerfCode',
+          url: 'http://47.96.233.229:8080/CompareVerfCode',
           data: {
             email: this.registerForm.email,
             code: this.checkCode
@@ -171,7 +171,7 @@ export default {
       let that = this
       this.$axios({
         method: 'post',
-        url: 'http://localhost:8080/register',
+        url: 'http://47.96.233.229:8080/register',
         data: {
           emailAdd: this.registerForm.email,
           username: this.registerForm.username,

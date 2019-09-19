@@ -78,7 +78,7 @@ export default {
         let that = this
         this.$axios({
           method: 'post',
-          url: 'http://localhost:8080/login',
+          url: 'http://47.96.233.229:8080/login',
           data: {
             emailAdd: '',
             username: this.loginForm.username,

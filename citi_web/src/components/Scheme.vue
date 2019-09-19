@@ -109,7 +109,7 @@ export default {
           let that = this
           this.$axios({
             method: 'get',
-            url: 'http://localhost:8080/addPurchase/' + sessionStorage.getItem('id') + '/' + this.stocks[i].code.substring(7).toLowerCase() + this.stocks[i].code.substring(0, 6) + '/' + that.stocks[i].num
+            url: 'http://47.96.233.229:8080/addPurchase/' + sessionStorage.getItem('id') + '/' + this.stocks[i].code.substring(7).toLowerCase() + this.stocks[i].code.substring(0, 6) + '/' + that.stocks[i].num
           }).then(res => {
             if (res.data.success) {
               this.$message({
